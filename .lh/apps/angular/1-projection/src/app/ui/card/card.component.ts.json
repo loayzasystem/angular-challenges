@@ -1,0 +1,98 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/app/ui/card/card.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 20,
+      "patches": [
+        {
+          "date": 1742853623627,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742853686198,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       @if (type() === CardType.TEACHER) {\r\n \r\n       }\r\n       @if (type() === CardType.STUDENT) {\r\n-        <img ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+\r\n       }\r\n \r\n       <section>\r\n         @for (item of list(); track item) {\r\n"
+        },
+        {
+          "date": 1742853705384,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,15 +13,10 @@\n       class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n       [class]=\"customClass()\">\r\n \r\n       <ng-content select=\"[.card_image]\"></ng-content>\r\n-      @if (type() === CardType.TEACHER) {\r\n \r\n-      }\r\n-      @if (type() === CardType.STUDENT) {\r\n \r\n-      }\r\n-\r\n       <section>\r\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n"
+        },
+        {
+          "date": 1742853933654,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     <div\r\n       class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n       [class]=\"customClass()\">\r\n \r\n-      <ng-content select=\"[.card_image]\"></ng-content>\r\n+      <ng-content select=\".card_image\"></ng-content>\r\n \r\n \r\n       <section>\r\n         @for (item of list(); track item) {\r\n"
+        },
+        {
+          "date": 1742853982151,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,8 @@\n       class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n       [class]=\"customClass()\">\r\n \r\n       <ng-content select=\".card_image\"></ng-content>\r\n-\r\n-\r\n       <section>\r\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n"
+        },
+        {
+          "date": 1742854044404,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n         Add\r\n       </button>\r\n     </div>\r\n   `,\r\n-  imports: [ListItemComponent, NgOptimizedImage],\r\n+  imports: [ListItemComponent],\r\n })\r\n export class CardComponent {\r\n   private teacherStore = inject(TeacherStore);\r\n   private studentStore = inject(StudentStore);\r\n"
+        },
+        {
+          "date": 1742854228896,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,15 @@\n   template: `\r\n     <div\r\n       class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n       [class]=\"customClass()\">\r\n+      @if (type() === CardType.TEACHER) {\r\n+        <img ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n+      }\r\n+      @if (type() === CardType.STUDENT) {\r\n+        <img ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+      }\r\n \r\n-      <ng-content select=\".card_image\"></ng-content>\r\n       <section>\r\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n@@ -29,9 +34,9 @@\n         Add\r\n       </button>\r\n     </div>\r\n   `,\r\n-  imports: [ListItemComponent],\r\n+  imports: [ListItemComponent, NgOptimizedImage],\r\n })\r\n export class CardComponent {\r\n   private teacherStore = inject(TeacherStore);\r\n   private studentStore = inject(StudentStore);\r\n"
+        },
+        {
+          "date": 1742854261488,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,15 +11,10 @@\n   template: `\r\n     <div\r\n       class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n       [class]=\"customClass()\">\r\n-      @if (type() === CardType.TEACHER) {\r\n-        <img ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n-      }\r\n-      @if (type() === CardType.STUDENT) {\r\n-        <img ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n-      }\r\n \r\n+      <ng-content select=\".card_image\"></ng-content>\r\n       <section>\r\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n@@ -34,9 +29,9 @@\n         Add\r\n       </button>\r\n     </div>\r\n   `,\r\n-  imports: [ListItemComponent, NgOptimizedImage],\r\n+  imports: [ListItemComponent],\r\n })\r\n export class CardComponent {\r\n   private teacherStore = inject(TeacherStore);\r\n   private studentStore = inject(StudentStore);\r\n"
+        },
+        {
+          "date": 1742854399978,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n   template: `\r\n     <div\r\n       class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n       [class]=\"customClass()\">\r\n-\r\n       <ng-content select=\".card_image\"></ng-content>\r\n       <section>\r\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n"
+        },
+        {
+          "date": 1742854708999,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { StudentStore } from '../../data-access/student.store';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n import { CardType } from '../../model/card.model';\r\n import { ListItemComponent } from '../list-item/list-item.component';\r\n+import { EventEmitter } from 'stream';\r\n \r\n @Component({\r\n   selector: 'app-card',\r\n   template: `\r\n@@ -31,22 +32,9 @@\n   `,\r\n   imports: [ListItemComponent],\r\n })\r\n export class CardComponent {\r\n-  private teacherStore = inject(TeacherStore);\r\n-  private studentStore = inject(StudentStore);\r\n \r\n   readonly list = input<any[] | null>(null);\r\n-  readonly type = input.required<CardType>();\r\n+  readonly addNewItem =\r\n   readonly customClass = input('');\r\n-\r\n-  CardType = CardType;\r\n-\r\n-  addNewItem() {\r\n-    const type = this.type();\r\n-    if (type === CardType.TEACHER) {\r\n-      this.teacherStore.addOne(randTeacher());\r\n-    } else if (type === CardType.STUDENT) {\r\n-      this.studentStore.addOne(randStudent());\r\n-    }\r\n-  }\r\n }\r\n"
+        },
+        {
+          "date": 1742854933115,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,5 @@\n-import { NgOptimizedImage } from '@angular/common';\r\n-import { Component, inject, input } from '@angular/core';\r\n-import { randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n-import { StudentStore } from '../../data-access/student.store';\r\n-import { TeacherStore } from '../../data-access/teacher.store';\r\n-import { CardType } from '../../model/card.model';\r\n+import { Component, input, Output } from '@angular/core';\r\n import { ListItemComponent } from '../list-item/list-item.component';\r\n import { EventEmitter } from 'stream';\r\n \r\n @Component({\r\n@@ -34,7 +29,11 @@\n })\r\n export class CardComponent {\r\n \r\n   readonly list = input<any[] | null>(null);\r\n-  readonly addNewItem =\r\n+  @Output() addNewItemEvent = new EventEmitter<void>();\r\n   readonly customClass = input('');\r\n+\r\n+  addNewItem() {\r\n+    this.addNewItemEvent.emit();\r\n+  }\r\n }\r\n"
+        },
+        {
+          "date": 1742854977877,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n-import { Component, input, Output } from '@angular/core';\r\n+import { Component, input, Output, EventEmitter } from '@angular/core';\r\n import { ListItemComponent } from '../list-item/list-item.component';\r\n-import { EventEmitter } from 'stream';\r\n \r\n @Component({\r\n   selector: 'app-card',\r\n   template: `\r\n"
+        },
+        {
+          "date": 1742855013046,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n             [id]=\"item.id\"\r\n-            [type]=\"type()\"></app-list-item>\r\n+            [type]=\"TEACHER\"></app-list-item>\r\n         }\r\n       </section>\r\n \r\n       <button\r\n"
+        },
+        {
+          "date": 1742855798066,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n             [id]=\"item.id\"\r\n-            [type]=\"TEACHER\"></app-list-item>\r\n+            ></app-list-item>\r\n         }\r\n       </section>\r\n \r\n       <button\r\n"
+        },
+        {
+          "date": 1742856775097,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,10 @@\n })\r\n export class CardComponent {\r\n \r\n   readonly list = input<any[] | null>(null);\r\n-  @Output() addNewItemEvent = new EventEmitter<void>();\r\n+  addNewItemEvent = output<number>();\r\n+  addN\r\n   readonly customClass = input('');\r\n \r\n   addNewItem() {\r\n     this.addNewItemEvent.emit();\r\n"
+        },
+        {
+          "date": 1742856792515,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Component, input, Output, EventEmitter } from '@angular/core';\r\n+import { Component, input, Output, EventEmitter, output } from '@angular/core';\r\n import { ListItemComponent } from '../list-item/list-item.component';\r\n \r\n @Component({\r\n   selector: 'app-card',\r\n@@ -28,10 +28,9 @@\n })\r\n export class CardComponent {\r\n \r\n   readonly list = input<any[] | null>(null);\r\n-  addNewItemEvent = output<number>();\r\n-  addN\r\n+  addNewItemEvent = output<void>();\r\n   readonly customClass = input('');\r\n \r\n   addNewItem() {\r\n     this.addNewItemEvent.emit();\r\n"
+        },
+        {
+          "date": 1742856886897,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n         @for (item of list(); track item) {\r\n           <app-list-item\r\n             [name]=\"item.firstName\"\r\n             [id]=\"item.id\"\r\n+            (deleteEvent)=\"delete(item.id)\"\r\n             ></app-list-item>\r\n         }\r\n       </section>\r\n \r\n@@ -29,10 +30,12 @@\n export class CardComponent {\r\n \r\n   readonly list = input<any[] | null>(null);\r\n   addNewItemEvent = output<void>();\r\n+  deleteEvent = output<number>();\r\n   readonly customClass = input('');\r\n \r\n   addNewItem() {\r\n     this.addNewItemEvent.emit();\r\n   }\r\n+  delete(i)\r\n }\r\n"
+        },
+        {
+          "date": 1742856923687,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,6 +36,8 @@\n \r\n   addNewItem() {\r\n     this.addNewItemEvent.emit();\r\n   }\r\n-  delete(i)\r\n+  delete(id : number) {\r\n+    this.deleteEvent.emit(id);\r\n+  }\r\n }\r\n"
+        },
+        {
+          "date": 1742856930174,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,8 @@\n \r\n   addNewItem() {\r\n     this.addNewItemEvent.emit();\r\n   }\r\n-  delete(id : number) {\r\n+  delete(id: number) {\r\n     this.deleteEvent.emit(id);\r\n   }\r\n }\r\n"
+        },
+        {
+          "date": 1742857066729,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,5 +40,5 @@\n \r\n   delete(id: number) {\r\n     this.deleteEvent.emit(id);\r\n   }\r\n-}\n\\ No newline at end of file\n+}\r\n"
+        },
+        {
+          "date": 1742857072494,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,44 @@\n+import { Component, input, Output, EventEmitter, output } from '@angular/core';\r\n+import { ListItemComponent } from '../list-item/list-item.component';\r\n+\r\n+@Component({\r\n+  selector: 'app-card',\r\n+  template: `\r\n+    <div\r\n+      class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n+      [class]=\"customClass()\">\r\n+      <ng-content select=\".card_image\"></ng-content>\r\n+      <section>\r\n+        @for (item of list(); track item) {\r\n+          <app-list-item\r\n+            [name]=\"item.firstName\"\r\n+            [id]=\"item.id\"\r\n+            (deleteEvent)=\"delete(item.id)\"\r\n+            ></app-list-item>\r\n+        }\r\n+      </section>\r\n+\r\n+      <button\r\n+        class=\"rounded-sm border border-blue-500 bg-blue-300 p-2\"\r\n+        (click)=\"addNewItem()\">\r\n+        Add\r\n+      </button>\r\n+    </div>\r\n+  `,\r\n+  imports: [ListItemComponent],\r\n+})\r\n+export class CardComponent {\r\n+\r\n+  readonly list = input<any[] | null>(null);\r\n+  addNewItemEvent = output<void>();\r\n+  deleteEvent = output<number>();\r\n+  readonly customClass = input('');\r\n+\r\n+  addNewItem() {\r\n+    this.addNewItemEvent.emit();\r\n+  }\r\n+\r\n+  delete(id: number) {\r\n+    this.deleteEvent.emit(id);\r\n+  }\r\n+}\r\n"
+        }
+      ],
+      "date": 1742853623627,
+      "name": "Commit-0",
+      "content": "import { NgOptimizedImage } from '@angular/common';\r\nimport { Component, inject, input } from '@angular/core';\r\nimport { randStudent, randTeacher } from '../../data-access/fake-http.service';\r\nimport { StudentStore } from '../../data-access/student.store';\r\nimport { TeacherStore } from '../../data-access/teacher.store';\r\nimport { CardType } from '../../model/card.model';\r\nimport { ListItemComponent } from '../list-item/list-item.component';\r\n\r\n@Component({\r\n  selector: 'app-card',\r\n  template: `\r\n    <div\r\n      class=\"flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4\"\r\n      [class]=\"customClass()\">\r\n\r\n      <ng-content select=\"[.card_image]\"></ng-content>\r\n      @if (type() === CardType.TEACHER) {\r\n\r\n      }\r\n      @if (type() === CardType.STUDENT) {\r\n        <img ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n      }\r\n\r\n      <section>\r\n        @for (item of list(); track item) {\r\n          <app-list-item\r\n            [name]=\"item.firstName\"\r\n            [id]=\"item.id\"\r\n            [type]=\"type()\"></app-list-item>\r\n        }\r\n      </section>\r\n\r\n      <button\r\n        class=\"rounded-sm border border-blue-500 bg-blue-300 p-2\"\r\n        (click)=\"addNewItem()\">\r\n        Add\r\n      </button>\r\n    </div>\r\n  `,\r\n  imports: [ListItemComponent, NgOptimizedImage],\r\n})\r\nexport class CardComponent {\r\n  private teacherStore = inject(TeacherStore);\r\n  private studentStore = inject(StudentStore);\r\n\r\n  readonly list = input<any[] | null>(null);\r\n  readonly type = input.required<CardType>();\r\n  readonly customClass = input('');\r\n\r\n  CardType = CardType;\r\n\r\n  addNewItem() {\r\n    const type = this.type();\r\n    if (type === CardType.TEACHER) {\r\n      this.teacherStore.addOne(randTeacher());\r\n    } else if (type === CardType.STUDENT) {\r\n      this.studentStore.addOne(randStudent());\r\n    }\r\n  }\r\n}\r\n"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/app/component/student-card/student-card.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 22,
+      "patches": [
+        {
+          "date": 1742853620884,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742853752130,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     <app-card\r\n       [list]=\"students()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-green\" >\r\n-      <img class=\"card-image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742854260225,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     <app-card\r\n       [list]=\"students()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-green\" >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/student.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742854288056,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     <app-card\r\n       [list]=\"students()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-green\" >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/student.png\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742854324215,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     <app-card\r\n       [list]=\"students()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-green\" >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742854335175,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import { FakeHttpService } from '../../data-access/fake-http.service';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n+import { NgOptimizedImage } from '@angular/common';\r\n \r\n @Component({\r\n   selector: 'app-student-card',\r\n   template: `\r\n@@ -25,9 +26,9 @@\n         background-color: rgba(0, 250, 0, 0.1);\r\n       }\r\n     `,\r\n   ],\r\n-  imports: [CardComponent],\r\n+  imports: [CardComponent, NgOptimizedImage],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class StudentCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n"
+        },
+        {
+          "date": 1742854352229,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     <app-card\r\n       [list]=\"students()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-green\" >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742855618451,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   Component,\r\n   inject,\r\n   OnInit,\r\n } from '@angular/core';\r\n-import { FakeHttpService } from '../../data-access/fake-http.service';\r\n+import { FakeHttpService, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n import { NgOptimizedImage } from '@angular/common';\r\n@@ -14,10 +14,11 @@\n   selector: 'app-student-card',\r\n   template: `\r\n     <app-card\r\n       [list]=\"students()\"\r\n-      [type]=\"cardType\"\r\n-      customClass=\"bg-light-green\" >\r\n+      customClass=\"bg-light-green\"\r\n+      (addNewItemEvent)=\"addNewItem()\"\r\n+      >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n@@ -39,5 +40,10 @@\n \r\n   ngOnInit(): void {\r\n     this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n   }\r\n+\r\n+  addNewItem() {\r\n+    this.store.addOne(randStudent);\r\n+  }\r\n+\r\n }\r\n"
+        },
+        {
+          "date": 1742855625054,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,8 @@\n     this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n   }\r\n \r\n   addNewItem() {\r\n-    this.store.addOne(randStudent);\r\n+    this.store.addOne(randStudent());\r\n   }\r\n \r\n }\r\n"
+        },
+        {
+          "date": 1742855824590,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   template: `\r\n     <app-card\r\n       [list]=\"students()\"\r\n       customClass=\"bg-light-green\"\r\n-      (addNewItemEvent)=\"addNewItem()\"\r\n+      (addNewItemEvent)=\"addNewStudent()\"\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n@@ -41,9 +41,9 @@\n   ngOnInit(): void {\r\n     this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n   }\r\n \r\n-  addNewItem() {\r\n+  addNewStudent() {\r\n     this.store.addOne(randStudent());\r\n   }\r\n \r\n }\r\n"
+        },
+        {
+          "date": 1742857581769,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n     <app-card\r\n       [list]=\"students()\"\r\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n+      (deleteEvent)=\"delete($event)\"\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n@@ -45,5 +46,10 @@\n   addNewStudent() {\r\n     this.store.addOne(randStudent());\r\n   }\r\n \r\n+  delete(id: number) {\r\n+    console.log($event)\r\n+    //this.studentStore.deleteOne(id);\r\n+  }\r\n+\r\n }\r\n"
+        },
+        {
+          "date": 1742857662727,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,10 +46,10 @@\n   addNewStudent() {\r\n     this.store.addOne(randStudent());\r\n   }\r\n \r\n-  delete(id: number) {\r\n-    console.log($event)\r\n+  delete(id: any) {\r\n+    console.log(id);\r\n     //this.studentStore.deleteOne(id);\r\n   }\r\n \r\n }\r\n"
+        },
+        {
+          "date": 1742857722037,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n   addNewStudent() {\r\n     this.store.addOne(randStudent());\r\n   }\r\n \r\n-  delete(id: any) {\r\n+  delete(id: number) {\r\n     console.log(id);\r\n     //this.studentStore.deleteOne(id);\r\n   }\r\n \r\n"
+        },
+        {
+          "date": 1742857737765,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,8 @@\n     this.store.addOne(randStudent());\r\n   }\r\n \r\n   delete(id: number) {\r\n-    console.log(id);\r\n-    //this.studentStore.deleteOne(id);\r\n+    this.store.deleteOne(id);\r\n   }\r\n \r\n }\r\n"
+        },
+        {
+          "date": 1742858196657,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,9 @@\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n-      ::ng-deep .bg-light-green {\r\n-        background-color: rgba(0, 250, 0, 0.1);\r\n-      }\r\n+      ::ng-deep\r\n     `,\r\n   ],\r\n   imports: [CardComponent, NgOptimizedImage],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n"
+        },
+        {
+          "date": 1742858211952,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,13 +21,8 @@\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n-  styles: [\r\n-    `\r\n-      ::ng-deep\r\n-    `,\r\n-  ],\r\n   imports: [CardComponent, NgOptimizedImage],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class StudentCardComponent implements OnInit {\r\n"
+        },
+        {
+          "date": 1742862008655,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n import { StudentStore } from '../../data-access/student.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n import { NgOptimizedImage } from '@angular/common';\r\n+import { ListItemComponent } from '../../ui/list-item/list-item.component';\r\n \r\n @Component({\r\n   selector: 'app-student-card',\r\n   template: `\r\n@@ -17,13 +18,22 @@\n       [list]=\"students()\"\r\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n+      template= #studentTemplate\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n+\r\n+    <ng-template #studentTemplate let-student>\r\n+    <app-list-item\r\n+      [name]=\"student.firstName\"\r\n+      [id]=\"student.id\"\r\n+      (deleteEvent)=\"deleteStudent(student.id)\">\r\n+    </app-list-item>\r\n+  </ng-template>\r\n   `,\r\n-  imports: [CardComponent, NgOptimizedImage],\r\n+  imports: [CardComponent, NgOptimizedImage, ListItemComponent],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class StudentCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n"
+        },
+        {
+          "date": 1742862128584,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n     <ng-template #studentTemplate let-student>\r\n     <app-list-item\r\n       [name]=\"student.firstName\"\r\n       [id]=\"student.id\"\r\n-      (deleteEvent)=\"deleteStudent(student.id)\">\r\n+      (deleteEvent)=\"delete(student.id)\">\r\n     </app-list-item>\r\n   </ng-template>\r\n   `,\r\n   imports: [CardComponent, NgOptimizedImage, ListItemComponent],\r\n"
+        },
+        {
+          "date": 1742862156532,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       [list]=\"students()\"\r\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n-      template= #studentTemplate\r\n+      [template]= #studentTemplate\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n \r\n"
+        },
+        {
+          "date": 1742862165034,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       [list]=\"students()\"\r\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n-      [template]= #studentTemplate\r\n+      [template]= studentTemplate\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n \r\n"
+        },
+        {
+          "date": 1742862402883,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,14 +24,14 @@\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n \r\n     <ng-template #studentTemplate let-student>\r\n-    <app-list-item\r\n-      [name]=\"student.firstName\"\r\n-      [id]=\"student.id\"\r\n-      (deleteEvent)=\"delete(student.id)\">\r\n-    </app-list-item>\r\n-  </ng-template>\r\n+      <app-list-item\r\n+        [name]=\"student.firstName\"\r\n+        [id]=\"student.id\"\r\n+        (deleteEvent)=\"delete(student.id)\">\r\n+      </app-list-item>\r\n+    </ng-template>\r\n   `,\r\n   imports: [CardComponent, NgOptimizedImage, ListItemComponent],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n"
+        },
+        {
+          "date": 1742862441953,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       [list]=\"students()\"\r\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n-      [template]= studentTemplate\r\n+      [template]= \"studentTemplate\"\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n \r\n"
+        },
+        {
+          "date": 1742862499992,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,13 +23,13 @@\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n \r\n-    <ng-template #studentTemplate let-student>\r\n+    <ng-template #studentTemplate let-item>\r\n       <app-list-item\r\n-        [name]=\"student.firstName\"\r\n-        [id]=\"student.id\"\r\n-        (deleteEvent)=\"delete(student.id)\">\r\n+        [name]=\"item.firstName\"\r\n+        [id]=\"item.id\"\r\n+        (deleteEvent)=\"delete(item.id)\">\r\n       </app-list-item>\r\n     </ng-template>\r\n   `,\r\n   imports: [CardComponent, NgOptimizedImage, ListItemComponent],\r\n"
+        }
+      ],
+      "date": 1742853620884,
+      "name": "Commit-0",
+      "content": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  inject,\r\n  OnInit,\r\n} from '@angular/core';\r\nimport { FakeHttpService } from '../../data-access/fake-http.service';\r\nimport { StudentStore } from '../../data-access/student.store';\r\nimport { CardType } from '../../model/card.model';\r\nimport { CardComponent } from '../../ui/card/card.component';\r\n\r\n@Component({\r\n  selector: 'app-student-card',\r\n  template: `\r\n    <app-card\r\n      [list]=\"students()\"\r\n      [type]=\"cardType\"\r\n      customClass=\"bg-light-green\" >\r\n      <img class=\"card-image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n    </app-card>\r\n  `,\r\n  styles: [\r\n    `\r\n      ::ng-deep .bg-light-green {\r\n        background-color: rgba(0, 250, 0, 0.1);\r\n      }\r\n    `,\r\n  ],\r\n  imports: [CardComponent],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class StudentCardComponent implements OnInit {\r\n  private http = inject(FakeHttpService);\r\n  private store = inject(StudentStore);\r\n\r\n  students = this.store.students;\r\n  cardType = CardType.STUDENT;\r\n\r\n  ngOnInit(): void {\r\n    this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n  }\r\n}\r\n"
+    }
+  ]
+}

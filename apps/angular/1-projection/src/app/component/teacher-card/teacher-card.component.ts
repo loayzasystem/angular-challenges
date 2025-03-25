@@ -1,5 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FakeHttpService } from '../../data-access/fake-http.service';
+import { NgOptimizedImage } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
+import {
+  FakeHttpService,
+  randTeacher,
+} from '../../data-access/fake-http.service';
 import { TeacherStore } from '../../data-access/teacher.store';
 import { CardType } from '../../model/card.model';
 import { CardComponent } from '../../ui/card/card.component';
@@ -9,17 +18,18 @@ import { CardComponent } from '../../ui/card/card.component';
   template: `
     <app-card
       [list]="teachers()"
-      [type]="cardType"
-      customClass="bg-light-red"></app-card>
+      (addNewItemEvent)="addNewTeacher()"
+      (deleteEvent)="delete($event)"
+      customClass="bg-light-red">
+      <img
+        class="card_image"
+        ngSrc="assets/img/teacher.png"
+        width="200"
+        height="200" />
+    </app-card>
   `,
-  styles: [
-    `
-      ::ng-deep .bg-light-red {
-        background-color: rgba(250, 0, 0, 0.1);
-      }
-    `,
-  ],
-  imports: [CardComponent],
+  imports: [CardComponent, NgOptimizedImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeacherCardComponent implements OnInit {
   private http = inject(FakeHttpService);
@@ -30,5 +40,13 @@ export class TeacherCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.fetchTeachers$.subscribe((t) => this.store.addAll(t));
+  }
+
+  addNewTeacher() {
+    this.store.addOne(randTeacher());
+  }
+
+  delete(id: number) {
+    this.store.deleteOne(id);
   }
 }

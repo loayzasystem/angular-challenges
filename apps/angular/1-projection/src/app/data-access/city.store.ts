@@ -7,6 +7,10 @@ import { City } from '../model/city.model';
 export class CityStore {
   private cities = signal<City[]>([]);
 
+  getAll() {
+    return this.cities;
+  }
+
   addAll(cities: City[]) {
     this.cities.set(cities);
   }

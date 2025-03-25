@@ -1,0 +1,70 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/app/component/teacher-card/teacher-card.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 13,
+      "patches": [
+        {
+          "date": 1742853696552,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742854036409,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { FakeHttpService } from '../../data-access/fake-http.service';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n+import { NgOptimizedImage } from '@angular/common';\r\n \r\n @Component({\r\n   selector: 'app-teacher-card',\r\n   template: `\r\n@@ -20,9 +21,9 @@\n         background-color: rgba(250, 0, 0, 0.1);\r\n       }\r\n     `,\r\n   ],\r\n-  imports: [CardComponent],\r\n+  imports: [CardComponent, NgOptimizedImage],\r\n })\r\n export class TeacherCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n   private store = inject(TeacherStore);\r\n"
+        },
+        {
+          "date": 1742854204225,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     <app-card\r\n       [list]=\"teachers()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-red\">\r\n-      <img ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742854251838,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     <app-card\r\n       [list]=\"teachers()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-red\">\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/teacher.webp\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742854278257,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     <app-card\r\n       [list]=\"teachers()\"\r\n       [type]=\"cardType\"\r\n       customClass=\"bg-light-red\">\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/teacher.webp\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   styles: [\r\n     `\r\n"
+        },
+        {
+          "date": 1742855311822,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   selector: 'app-teacher-card',\r\n   template: `\r\n     <app-card\r\n       [list]=\"teachers()\"\r\n-      [type]=\"cardType\"\r\n       customClass=\"bg-light-red\">\r\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n"
+        },
+        {
+          "date": 1742855682057,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { Component, inject, OnInit } from '@angular/core';\r\n-import { FakeHttpService } from '../../data-access/fake-http.service';\r\n+import { FakeHttpService, randTeacher } from '../../data-access/fake-http.service';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n import { NgOptimizedImage } from '@angular/common';\r\n@@ -32,5 +32,9 @@\n \r\n   ngOnInit(): void {\r\n     this.http.fetchTeachers$.subscribe((t) => this.store.addAll(t));\r\n   }\r\n+\r\n+  addNewTeacher() {\r\n+    this.store.addOne(randTeacher());\r\n+  }\r\n }\r\n"
+        },
+        {
+          "date": 1742855747706,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   selector: 'app-teacher-card',\r\n   template: `\r\n     <app-card\r\n       [list]=\"teachers()\"\r\n+      (addNewItemEvent)=\"addNewTeacher\"\r\n       customClass=\"bg-light-red\">\r\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n"
+        },
+        {
+          "date": 1742855759771,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   selector: 'app-teacher-card',\r\n   template: `\r\n     <app-card\r\n       [list]=\"teachers()\"\r\n-      (addNewItemEvent)=\"addNewTeacher\"\r\n+      (addNewItemEvent)=\"addNewTeacher()\"\r\n       customClass=\"bg-light-red\">\r\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n"
+        },
+        {
+          "date": 1742857766952,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   template: `\r\n     <app-card\r\n       [list]=\"teachers()\"\r\n       (addNewItemEvent)=\"addNewTeacher()\"\r\n+      (deleteEvent)=\"delete($event)\"\r\n       customClass=\"bg-light-red\">\r\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n@@ -37,5 +38,9 @@\n \r\n   addNewTeacher() {\r\n     this.store.addOne(randTeacher());\r\n   }\r\n+\r\n+  delete(id: number) {\r\n+    this.store.deleteOne(id);\r\n+  }\r\n }\r\n"
+        },
+        {
+          "date": 1742858194068,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,15 +15,9 @@\n       customClass=\"bg-light-red\">\r\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n-  styles: [\r\n-    `\r\n-      ::ng-deep .bg-light-red {\r\n-        background-color: rgba(250, 0, 0, 0.1);\r\n-      }\r\n-    `,\r\n-  ],\r\n+\r\n   imports: [CardComponent, NgOptimizedImage],\r\n })\r\n export class TeacherCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n"
+        },
+        {
+          "date": 1742858220794,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n       customClass=\"bg-light-red\">\r\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n-\r\n   imports: [CardComponent, NgOptimizedImage],\r\n })\r\n export class TeacherCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n"
+        },
+        {
+          "date": 1742858227984,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n       <img class=\"card_image\" ngSrc=\"assets/img/teacher.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   imports: [CardComponent, NgOptimizedImage],\r\n+  changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class TeacherCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n   private store = inject(TeacherStore);\r\n"
+        },
+        {
+          "date": 1742858256325,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Component, inject, OnInit } from '@angular/core';\r\n+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';\r\n import { FakeHttpService, randTeacher } from '../../data-access/fake-http.service';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n"
+        }
+      ],
+      "date": 1742853696552,
+      "name": "Commit-0",
+      "content": "import { Component, inject, OnInit } from '@angular/core';\r\nimport { FakeHttpService } from '../../data-access/fake-http.service';\r\nimport { TeacherStore } from '../../data-access/teacher.store';\r\nimport { CardType } from '../../model/card.model';\r\nimport { CardComponent } from '../../ui/card/card.component';\r\n\r\n@Component({\r\n  selector: 'app-teacher-card',\r\n  template: `\r\n    <app-card\r\n      [list]=\"teachers()\"\r\n      [type]=\"cardType\"\r\n      customClass=\"bg-light-red\">\r\n      <img ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n    </app-card>\r\n  `,\r\n  styles: [\r\n    `\r\n      ::ng-deep .bg-light-red {\r\n        background-color: rgba(250, 0, 0, 0.1);\r\n      }\r\n    `,\r\n  ],\r\n  imports: [CardComponent],\r\n})\r\nexport class TeacherCardComponent implements OnInit {\r\n  private http = inject(FakeHttpService);\r\n  private store = inject(TeacherStore);\r\n\r\n  teachers = this.store.teachers;\r\n  cardType = CardType.TEACHER;\r\n\r\n  ngOnInit(): void {\r\n    this.http.fetchTeachers$.subscribe((t) => this.store.addAll(t));\r\n  }\r\n}\r\n"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/styles.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 2,
+      "patches": [
+        {
+          "date": 1742858161909,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742858172979,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,4 +3,7 @@\n @tailwind utilities;\r\n .bg-light-red {\r\n   background-color: rgba(250, 0, 0, 0.1);\r\n }\r\n+.bg-light-green {\r\n+  background-color: rgba(0, 250, 0, 0.1);\r\n+}\r\n"
+        },
+        {
+          "date": 1742858667122,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,4 +6,7 @@\n }\r\n .bg-light-green {\r\n   background-color: rgba(0, 250, 0, 0.1);\r\n }\r\n+.bg-light-blue {\r\n+  background-color: rgba(96, 85, 243, 0.1);\r\n+}\r\n"
+        }
+      ],
+      "date": 1742858161909,
+      "name": "Commit-0",
+      "content": "@tailwind base;\r\n@tailwind components;\r\n@tailwind utilities;\r\n.bg-light-red {\r\n  background-color: rgba(250, 0, 0, 0.1);\r\n}\r\n"
+    }
+  ]
+}

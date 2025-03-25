@@ -1,0 +1,110 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/app/component/city-card/city-card.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 23,
+      "patches": [
+        {
+          "date": 1742858352746,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742858408475,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,15 @@\n   Component,\r\n   inject,\r\n   OnInit,\r\n } from '@angular/core';\r\n-import { FakeHttpService, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n+import { FakeHttpService, randomCity, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n import { NgOptimizedImage } from '@angular/common';\r\n import { CityStore } from '../../data-access/city.store';\r\n+import { randCity } from '@ngneat/falso';\r\n \r\n @Component({\r\n   selector: 'app-student-card',\r\n   template: `\r\n@@ -29,17 +30,17 @@\n export class CityCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n   private store = inject(CityStore);\r\n \r\n-  students = this.store.students;\r\n+  students = this.store.cityes;\r\n   cardType = CardType.STUDENT;\r\n \r\n   ngOnInit(): void {\r\n     this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n   }\r\n \r\n   addNewStudent() {\r\n-    this.store.addOne(randStudent());\r\n+    this.store.addOne(randomCity());\r\n   }\r\n \r\n   delete(id: number) {\r\n     this.store.deleteOne(id);\r\n"
+        },
+        {
+          "date": 1742858498581,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n export class CityCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n   private store = inject(CityStore);\r\n \r\n-  students = this.store.cityes;\r\n+  students = this.store.getAll();\r\n   cardType = CardType.STUDENT;\r\n \r\n   ngOnInit(): void {\r\n     this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n"
+        },
+        {
+          "date": 1742858530685,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n @Component({\r\n   selector: 'app-student-card',\r\n   template: `\r\n     <app-card\r\n-      [list]=\"students()\"\r\n+      [list]=\"()\"\r\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n       >\r\n@@ -30,10 +30,10 @@\n export class CityCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n   private store = inject(CityStore);\r\n \r\n-  students = this.store.getAll();\r\n-  cardType = CardType.STUDENT;\r\n+  cities = this.store.getAll();\r\n+  cardType = CardType.CITY;\r\n \r\n   ngOnInit(): void {\r\n     this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n   }\r\n"
+        },
+        {
+          "date": 1742858540498,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,49 @@\n+import {\r\n+  ChangeDetectionStrategy,\r\n+  Component,\r\n+  inject,\r\n+  OnInit,\r\n+} from '@angular/core';\r\n+import { FakeHttpService, randomCity, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n+import { StudentStore } from '../../data-access/student.store';\r\n+import { CardType } from '../../model/card.model';\r\n+import { CardComponent } from '../../ui/card/card.component';\r\n+import { NgOptimizedImage } from '@angular/common';\r\n+import { CityStore } from '../../data-access/city.store';\r\n+import { randCity } from '@ngneat/falso';\r\n+\r\n+@Component({\r\n+  selector: 'app-student-card',\r\n+  template: `\r\n+    <app-card\r\n+      [list]=\"()\"\r\n+      customClass=\"bg-light-green\"\r\n+      (addNewItemEvent)=\"addNewStudent()\"\r\n+      (deleteEvent)=\"delete($event)\"\r\n+      >\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+    </app-card>\r\n+  `,\r\n+  imports: [CardComponent, NgOptimizedImage],\r\n+  changeDetection: ChangeDetectionStrategy.OnPush,\r\n+})\r\n+export class CityCardComponent implements OnInit {\r\n+  private http = inject(FakeHttpService);\r\n+  private store = inject(CityStore);\r\n+\r\n+  cities = this.store.getAll();\r\n+  cardType = CardType.CITY;\r\n+\r\n+  ngOnInit(): void {\r\n+    this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n+  }\r\n+\r\n+  addNewStudent() {\r\n+    this.store.addOne(randomCity());\r\n+  }\r\n+\r\n+  delete(id: number) {\r\n+    this.store.deleteOne(id);\r\n+  }\r\n+\r\n+}\r\n"
+        },
+        {
+          "date": 1742858565101,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       customClass=\"bg-light-green\"\r\n       (addNewItemEvent)=\"addNewStudent()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n       >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n   imports: [CardComponent, NgOptimizedImage],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n"
+        },
+        {
+          "date": 1742858574416,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,49 @@\n+import {\r\n+  ChangeDetectionStrategy,\r\n+  Component,\r\n+  inject,\r\n+  OnInit,\r\n+} from '@angular/core';\r\n+import { FakeHttpService, randomCity, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n+import { StudentStore } from '../../data-access/student.store';\r\n+import { CardType } from '../../model/card.model';\r\n+import { CardComponent } from '../../ui/card/card.component';\r\n+import { NgOptimizedImage } from '@angular/common';\r\n+import { CityStore } from '../../data-access/city.store';\r\n+import { randCity } from '@ngneat/falso';\r\n+\r\n+@Component({\r\n+  selector: 'app-student-card',\r\n+  template: `\r\n+    <app-card\r\n+      [list]=\"cities()\"\r\n+      customClass=\"bg-light-green\"\r\n+      (addNewItemEvent)=\"addNewStudent()\"\r\n+      (deleteEvent)=\"delete($event)\"\r\n+      >\r\n+      <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n+    </app-card>\r\n+  `,\r\n+  imports: [CardComponent, NgOptimizedImage],\r\n+  changeDetection: ChangeDetectionStrategy.OnPush,\r\n+})\r\n+export class CityCardComponent implements OnInit {\r\n+  private http = inject(FakeHttpService);\r\n+  private store = inject(CityStore);\r\n+\r\n+  cities = this.store.getAll();\r\n+  cardType = CardType.CITY;\r\n+\r\n+  ngOnInit(): void {\r\n+    this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n+  }\r\n+\r\n+  addNewStudent() {\r\n+    this.store.addOne(randomCity());\r\n+  }\r\n+\r\n+  delete(id: number) {\r\n+    this.store.deleteOne(id);\r\n+  }\r\n+\r\n+}\r\n"
+        },
+        {
+          "date": 1742858597026,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   template: `\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-green\"\r\n-      (addNewItemEvent)=\"addNewStudent()\"\r\n+      (addNewItemEvent)=\"addNewCity()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n@@ -37,9 +37,9 @@\n   ngOnInit(): void {\r\n     this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n   }\r\n \r\n-  addNewStudent() {\r\n+  addNewCity() {\r\n     this.store.addOne(randomCity());\r\n   }\r\n \r\n   delete(id: number) {\r\n"
+        },
+        {
+          "date": 1742858597378,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,102 +46,4 @@\n     this.store.deleteOne(id);\r\n   }\r\n \r\n }\r\n-import {\r\n-  ChangeDetectionStrategy,\r\n-  Component,\r\n-  inject,\r\n-  OnInit,\r\n-} from '@angular/core';\r\n-import { FakeHttpService, randomCity, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n-import { StudentStore } from '../../data-access/student.store';\r\n-import { CardType } from '../../model/card.model';\r\n-import { CardComponent } from '../../ui/card/card.component';\r\n-import { NgOptimizedImage } from '@angular/common';\r\n-import { CityStore } from '../../data-access/city.store';\r\n-import { randCity } from '@ngneat/falso';\r\n-\r\n-@Component({\r\n-  selector: 'app-student-card',\r\n-  template: `\r\n-    <app-card\r\n-      [list]=\"()\"\r\n-      customClass=\"bg-light-green\"\r\n-      (addNewItemEvent)=\"addNewStudent()\"\r\n-      (deleteEvent)=\"delete($event)\"\r\n-      >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n-    </app-card>\r\n-  `,\r\n-  imports: [CardComponent, NgOptimizedImage],\r\n-  changeDetection: ChangeDetectionStrategy.OnPush,\r\n-})\r\n-export class CityCardComponent implements OnInit {\r\n-  private http = inject(FakeHttpService);\r\n-  private store = inject(CityStore);\r\n-\r\n-  cities = this.store.getAll();\r\n-  cardType = CardType.CITY;\r\n-\r\n-  ngOnInit(): void {\r\n-    this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n-  }\r\n-\r\n-  addNewStudent() {\r\n-    this.store.addOne(randomCity());\r\n-  }\r\n-\r\n-  delete(id: number) {\r\n-    this.store.deleteOne(id);\r\n-  }\r\n-\r\n-}\r\n-import {\r\n-  ChangeDetectionStrategy,\r\n-  Component,\r\n-  inject,\r\n-  OnInit,\r\n-} from '@angular/core';\r\n-import { FakeHttpService, randomCity, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n-import { StudentStore } from '../../data-access/student.store';\r\n-import { CardType } from '../../model/card.model';\r\n-import { CardComponent } from '../../ui/card/card.component';\r\n-import { NgOptimizedImage } from '@angular/common';\r\n-import { CityStore } from '../../data-access/city.store';\r\n-import { randCity } from '@ngneat/falso';\r\n-\r\n-@Component({\r\n-  selector: 'app-student-card',\r\n-  template: `\r\n-    <app-card\r\n-      [list]=\"()\"\r\n-      customClass=\"bg-light-green\"\r\n-      (addNewItemEvent)=\"addNewStudent()\"\r\n-      (deleteEvent)=\"delete($event)\"\r\n-      >\r\n-      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n-    </app-card>\r\n-  `,\r\n-  imports: [CardComponent, NgOptimizedImage],\r\n-  changeDetection: ChangeDetectionStrategy.OnPush,\r\n-})\r\n-export class CityCardComponent implements OnInit {\r\n-  private http = inject(FakeHttpService);\r\n-  private store = inject(CityStore);\r\n-\r\n-  cities = this.store.getAll();\r\n-  cardType = CardType.CITY;\r\n-\r\n-  ngOnInit(): void {\r\n-    this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n-  }\r\n-\r\n-  addNewStudent() {\r\n-    this.store.addOne(randomCity());\r\n-  }\r\n-\r\n-  delete(id: number) {\r\n-    this.store.deleteOne(id);\r\n-  }\r\n-\r\n-}\r\n"
+        },
+        {
+          "date": 1742858609468,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n import { CityStore } from '../../data-access/city.store';\r\n import { randCity } from '@ngneat/falso';\r\n \r\n @Component({\r\n-  selector: 'app-student-card',\r\n+  selector: 'app-city-card',\r\n   template: `\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-green\"\r\n"
+        },
+        {
+          "date": 1742858614717,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   selector: 'app-city-card',\r\n   template: `\r\n     <app-card\r\n       [list]=\"cities()\"\r\n-      customClass=\"bg-light-green\"\r\n+      customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n"
+        },
+        {
+          "date": 1742858668471,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,15 +3,13 @@\n   Component,\r\n   inject,\r\n   OnInit,\r\n } from '@angular/core';\r\n-import { FakeHttpService, randomCity, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\n-import { StudentStore } from '../../data-access/student.store';\r\n+import { FakeHttpService, randomCity } from '../../data-access/fake-http.service';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n import { NgOptimizedImage } from '@angular/common';\r\n import { CityStore } from '../../data-access/city.store';\r\n-import { randCity } from '@ngneat/falso';\r\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n"
+        },
+        {
+          "date": 1742859304571,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,10 @@\n   cardType = CardType.CITY;\r\n \r\n   ngOnInit(): void {\r\n     this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n+\r\n+    console.log(this.cities);\r\n   }\r\n \r\n   addNewCity() {\r\n     this.store.addOne(randomCity());\r\n"
+        },
+        {
+          "date": 1742859349739,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n \r\n   ngOnInit(): void {\r\n     this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n \r\n-    console.log(this.cities);\r\n+    console.log(this.cities());\r\n   }\r\n \r\n   addNewCity() {\r\n     this.store.addOne(randomCity());\r\n"
+        },
+        {
+          "date": 1742859415886,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,8 @@\n   cardType = CardType.CITY;\r\n \r\n   ngOnInit(): void {\r\n     this.http.fetchCities$.subscribe((s) => this.store.addAll(s));\r\n-\r\n-    console.log(this.cities());\r\n   }\r\n \r\n   addNewCity() {\r\n     this.store.addOne(randomCity());\r\n"
+        },
+        {
+          "date": 1742859541248,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n+    {{cities()}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n"
+        },
+        {
+          "date": 1742859566616,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n-    {{cities()}}\r\n+    {{cities().values}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n"
+        },
+        {
+          "date": 1742859605200,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n-    {{cities().values}}\r\n+    {{cities() | json}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n"
+        },
+        {
+          "date": 1742859627848,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,15 @@\n } from '@angular/core';\r\n import { FakeHttpService, randomCity } from '../../data-access/fake-http.service';\r\n import { CardType } from '../../model/card.model';\r\n import { CardComponent } from '../../ui/card/card.component';\r\n-import { NgOptimizedImage } from '@angular/common';\r\n+import { NgOptimizedImage, JsonPipe } from '@angular/common';\r\n import { CityStore } from '../../data-access/city.store';\r\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n-    {{cities() | json}}\r\n+    {{cities() | JsonPipe}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n"
+        },
+        {
+          "date": 1742859643609,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n-    {{cities() | JsonPipe}}\r\n+    {{cities() | json}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n@@ -22,9 +22,9 @@\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n-  imports: [CardComponent, NgOptimizedImage],\r\n+  imports: [JsonPipe,CardComponent, NgOptimizedImage],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class CityCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n"
+        },
+        {
+          "date": 1742860358383,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n   template: `\r\n     {{cities() | json}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n+      [nameKey]=\"name\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n       >\r\n"
+        },
+        {
+          "date": 1742860372617,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   template: `\r\n     {{cities() | json}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n-      [nameKey]=\"name\"\r\n+      [nameKey]=\"'name'\"\r\n       customClass=\"bg-light-blue\"\r\n       (addNewItemEvent)=\"addNewCity()\"\r\n       (deleteEvent)=\"delete($event)\"\r\n       >\r\n"
+        },
+        {
+          "date": 1742860433638,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n \r\n @Component({\r\n   selector: 'app-city-card',\r\n   template: `\r\n-    {{cities() | json}}\r\n     <app-card\r\n       [list]=\"cities()\"\r\n       [nameKey]=\"'name'\"\r\n       customClass=\"bg-light-blue\"\r\n"
+        },
+        {
+          "date": 1742862379557,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n       >\r\n       <img class=\"card_image\" ngSrc=\"assets/img/city.png\" width=\"200\" height=\"200\" />\r\n     </app-card>\r\n   `,\r\n-  imports: [JsonPipe,CardComponent, NgOptimizedImage],\r\n+  imports: [CardComponent, NgOptimizedImage],\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class CityCardComponent implements OnInit {\r\n   private http = inject(FakeHttpService);\r\n"
+        }
+      ],
+      "date": 1742858352746,
+      "name": "Commit-0",
+      "content": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  inject,\r\n  OnInit,\r\n} from '@angular/core';\r\nimport { FakeHttpService, randStudent, randTeacher } from '../../data-access/fake-http.service';\r\nimport { StudentStore } from '../../data-access/student.store';\r\nimport { CardType } from '../../model/card.model';\r\nimport { CardComponent } from '../../ui/card/card.component';\r\nimport { NgOptimizedImage } from '@angular/common';\r\nimport { CityStore } from '../../data-access/city.store';\r\n\r\n@Component({\r\n  selector: 'app-student-card',\r\n  template: `\r\n    <app-card\r\n      [list]=\"students()\"\r\n      customClass=\"bg-light-green\"\r\n      (addNewItemEvent)=\"addNewStudent()\"\r\n      (deleteEvent)=\"delete($event)\"\r\n      >\r\n      <img class=\"card_image\" ngSrc=\"assets/img/student.webp\" width=\"200\" height=\"200\" />\r\n    </app-card>\r\n  `,\r\n  imports: [CardComponent, NgOptimizedImage],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class CityCardComponent implements OnInit {\r\n  private http = inject(FakeHttpService);\r\n  private store = inject(CityStore);\r\n\r\n  students = this.store.students;\r\n  cardType = CardType.STUDENT;\r\n\r\n  ngOnInit(): void {\r\n    this.http.fetchStudents$.subscribe((s) => this.store.addAll(s));\r\n  }\r\n\r\n  addNewStudent() {\r\n    this.store.addOne(randStudent());\r\n  }\r\n\r\n  delete(id: number) {\r\n    this.store.deleteOne(id);\r\n  }\r\n\r\n}\r\n"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/app/ui/list-item/list-item.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 21,
+      "patches": [
+        {
+          "date": 1742855186882,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742855811872,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,12 +28,12 @@\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n \r\n   delete(id: number) {\r\n-    const type = this.type();\r\n+    /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n       this.teacherStore.deleteOne(id);\r\n     } else if (type === CardType.STUDENT) {\r\n       this.studentStore.deleteOne(id);\r\n-    }\r\n+    } */\r\n   }\r\n }\r\n"
+        },
+        {
+          "date": 1742855918474,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n import {\r\n   ChangeDetectionStrategy,\r\n   Component,\r\n+  EventEmitter,\r\n   inject,\r\n   input,\r\n+  output,\r\n } from '@angular/core';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n import { CardType } from '../../model/card.model';\r\n@@ -26,8 +28,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n+  deleteEvent = output<EventEmitter<void>>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742855969437,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,6 +37,7 @@\n       this.teacherStore.deleteOne(id);\r\n     } else if (type === CardType.STUDENT) {\r\n       this.studentStore.deleteOne(id);\r\n     } */\r\n+    this.deleteEvent.emit();\r\n   }\r\n }\r\n"
+        },
+        {
+          "date": 1742855982505,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,7 +37,7 @@\n       this.teacherStore.deleteOne(id);\r\n     } else if (type === CardType.STUDENT) {\r\n       this.studentStore.deleteOne(id);\r\n     } */\r\n-    this.deleteEvent.emit();\r\n+    this.deleteEvent.emit(id);\r\n   }\r\n }\r\n"
+        },
+        {
+          "date": 1742856100187,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<void>>();\r\n+  deleteEvent = output<EventEmitter<void>>(new EventEmitter<void>());\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856163533,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<void>>(new EventEmitter<void>());\r\n+  deleteEvent = output<EventEmitter<number>>(new EventEmitter<number>());\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856234847,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<number>>(new EventEmitter<number>());\r\n+  deleteEvent = output<EventEmitter<number>>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856250294,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   output,\r\n } from '@angular/core';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n-import { CardType } from '../../model/card.model';\r\n \r\n @Component({\r\n   selector: 'app-list-item',\r\n   template: `\r\n@@ -28,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<number>>();\r\n+  deleteEvent = output<EventEmitter<number>>(new EventEmitter<number>());\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856387230,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<number>>(new EventEmitter<number>());\r\n+  deleteEvent = output<EventEmitter<number>>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856405626,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,7 +36,7 @@\n       this.teacherStore.deleteOne(id);\r\n     } else if (type === CardType.STUDENT) {\r\n       this.studentStore.deleteOne(id);\r\n     } */\r\n-    this.deleteEvent.emit(id);\r\n+    this.deleteEvent.emit(id());\r\n   }\r\n }\r\n"
+        },
+        {
+          "date": 1742856472570,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<number>>();\r\n+  @Output() deleteEvent = new EventEmitter<number>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856483297,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n   Component,\r\n   EventEmitter,\r\n   inject,\r\n   input,\r\n+  Output,\r\n   output,\r\n } from '@angular/core';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n@@ -36,7 +37,7 @@\n       this.teacherStore.deleteOne(id);\r\n     } else if (type === CardType.STUDENT) {\r\n       this.studentStore.deleteOne(id);\r\n     } */\r\n-    this.deleteEvent.emit(id());\r\n+    this.deleteEvent.emit(id);\r\n   }\r\n }\r\n"
+        },
+        {
+          "date": 1742856503369,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n   Component,\r\n   EventEmitter,\r\n   inject,\r\n   input,\r\n-  Output,\r\n   output,\r\n } from '@angular/core';\r\n import { StudentStore } from '../../data-access/student.store';\r\n import { TeacherStore } from '../../data-access/teacher.store';\r\n"
+        },
+        {
+          "date": 1742856548764,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  @Output() deleteEvent = new EventEmitter<number>();\r\n+  deleteEvent = output<number>(new EventEmitter<number>());\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856555990,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<number>(new EventEmitter<number>());\r\n+  deleteEvent = output<number>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856635062,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<number>();\r\n+  deleteEvent = output<EventEmitter<number>>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856652382,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<number>>();\r\n+  deleteEvent = output<EventEmitter<void>>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742856670927,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n-  deleteEvent = output<EventEmitter<void>>();\r\n+  deleteEvent = output<number>();\r\n \r\n   delete(id: number) {\r\n     /* const type = this.type();\r\n     if (type === CardType.TEACHER) {\r\n"
+        },
+        {
+          "date": 1742857438030,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,8 @@\n   standalone: true,\r\n   changeDetection: ChangeDetectionStrategy.OnPush,\r\n })\r\n export class ListItemComponent {\r\n-  private teacherStore = inject(TeacherStore);\r\n-  private studentStore = inject(StudentStore);\r\n \r\n   readonly id = input.required<number>();\r\n   readonly name = input.required<string>();\r\n   deleteEvent = output<number>();\r\n"
+        },
+        {
+          "date": 1742857500278,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,10 @@\n import {\r\n   ChangeDetectionStrategy,\r\n   Component,\r\n-  EventEmitter,\r\n-  inject,\r\n   input,\r\n   output,\r\n } from '@angular/core';\r\n-import { StudentStore } from '../../data-access/student.store';\r\n-import { TeacherStore } from '../../data-access/teacher.store';\r\n \r\n @Component({\r\n   selector: 'app-list-item',\r\n   template: `\r\n"
+        },
+        {
+          "date": 1742857794400,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,7 @@\n   readonly name = input.required<string>();\r\n   deleteEvent = output<number>();\r\n \r\n   delete(id: number) {\r\n-    /* const type = this.type();\r\n-    if (type === CardType.TEACHER) {\r\n-      this.teacherStore.deleteOne(id);\r\n-    } else if (type === CardType.STUDENT) {\r\n-      this.studentStore.deleteOne(id);\r\n-    } */\r\n     this.deleteEvent.emit(id);\r\n   }\r\n }\r\n"
+        }
+      ],
+      "date": 1742855186882,
+      "name": "Commit-0",
+      "content": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  inject,\r\n  input,\r\n} from '@angular/core';\r\nimport { StudentStore } from '../../data-access/student.store';\r\nimport { TeacherStore } from '../../data-access/teacher.store';\r\nimport { CardType } from '../../model/card.model';\r\n\r\n@Component({\r\n  selector: 'app-list-item',\r\n  template: `\r\n    <div class=\"border-grey-300 flex justify-between border px-2 py-1\">\r\n      {{ name() }}\r\n      <button (click)=\"delete(id())\">\r\n        <img class=\"h-5\" src=\"assets/svg/trash.svg\" />\r\n      </button>\r\n    </div>\r\n  `,\r\n  standalone: true,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class ListItemComponent {\r\n  private teacherStore = inject(TeacherStore);\r\n  private studentStore = inject(StudentStore);\r\n\r\n  readonly id = input.required<number>();\r\n  readonly name = input.required<string>();\r\n\r\n  delete(id: number) {\r\n    const type = this.type();\r\n    if (type === CardType.TEACHER) {\r\n      this.teacherStore.deleteOne(id);\r\n    } else if (type === CardType.STUDENT) {\r\n      this.studentStore.deleteOne(id);\r\n    }\r\n  }\r\n}\r\n"
+    }
+  ]
+}

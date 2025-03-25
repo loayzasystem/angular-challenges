@@ -1,0 +1,22 @@
+{
+  "sourceFile": "apps/angular/1-projection/src/app/data-access/city.store.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 1,
+      "patches": [
+        {
+          "date": 1742858449494,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742858472529,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,12 @@\n })\r\n export class CityStore {\r\n   private cities = signal<City[]>([]);\r\n \r\n+  getAll() {\r\n+    return this.cities;\r\n+  }\r\n+\r\n   addAll(cities: City[]) {\r\n     this.cities.set(cities);\r\n   }\r\n \r\n"
+        }
+      ],
+      "date": 1742858449494,
+      "name": "Commit-0",
+      "content": "import { Injectable, signal } from '@angular/core';\r\nimport { City } from '../model/city.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class CityStore {\r\n  private cities = signal<City[]>([]);\r\n\r\n  addAll(cities: City[]) {\r\n    this.cities.set(cities);\r\n  }\r\n\r\n  addOne(city: City) {\r\n    this.cities.set([...this.cities(), city]);\r\n  }\r\n\r\n  deleteOne(id: number) {\r\n    this.cities.set(this.cities().filter((s) => s.id !== id));\r\n  }\r\n}\r\n"
+    }
+  ]
+}
