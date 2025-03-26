@@ -1,0 +1,50 @@
+{
+  "sourceFile": "apps/angular/21-anchor-navigation/src/app/app.config.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 8,
+      "patches": [
+        {
+          "date": 1742950987458,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742951046002,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { ApplicationConfig } from '@angular/core';\r\n import { provideRouter } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n-  providers: [provideRouter(appRoutes,{anchorScrolling: true})],\r\n+  providers: [provideRouter(appRoutes,{ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' })],\r\n };\r\n"
+        },
+        {
+          "date": 1742951097996,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { ApplicationConfig } from '@angular/core';\r\n-import { provideRouter } from '@angular/router';\r\n+import { provideRouter, withRouterConfig } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n-  providers: [provideRouter(appRoutes,{ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' })],\r\n+  providers: [provideRouter(appRoutes,withRouterConfig({anchorNavigation: true})],\r\n };\r\n"
+        },
+        {
+          "date": 1742951109692,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { ApplicationConfig } from '@angular/core';\r\n import { provideRouter, withRouterConfig } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n-  providers: [provideRouter(appRoutes,withRouterConfig({anchorNavigation: true})],\r\n+  providers: [provideRouter(appRoutes,withRouterConfig({anchorScrolling: true})],\r\n };\r\n"
+        },
+        {
+          "date": 1742951145413,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n import { ApplicationConfig } from '@angular/core';\r\n import { provideRouter, withRouterConfig } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n-  providers: [provideRouter(appRoutes,withRouterConfig({anchorScrolling: true})],\r\n+  providers: [provideRouter(appRoutes,withRouterConfig({\r\n+        anchorScrolling: 'enabled',\r\n+        scrollPositionRestoration: 'enabled',\r\n+      })],\r\n };\r\n"
+        },
+        {
+          "date": 1742951170595,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,8 @@\n import { provideRouter, withRouterConfig } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n   providers: [provideRouter(appRoutes,withRouterConfig({\r\n-        anchorScrolling: 'enabled',\r\n-        scrollPositionRestoration: 'enabled',\r\n-      })],\r\n+    anchorScrolling: 'enabled',\r\n+    scrollPositionRestoration: 'enabled',\r\n+  })],\r\n };\r\n"
+        },
+        {
+          "date": 1742951198369,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import { ApplicationConfig } from '@angular/core';\r\n import { provideRouter, withRouterConfig } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n-  providers: [provideRouter(appRoutes,withRouterConfig({\r\n-    anchorScrolling: 'enabled',\r\n-    scrollPositionRestoration: 'enabled',\r\n-  })],\r\n+  providers: [provideRouter(\r\n+    appRoutes,\r\n+    withRouterConfig({\r\n+      anchorScrolling: 'enabled',\r\n+      scrollPositionRestoration: 'enabled',\r\n+    })\r\n+  ),],\r\n };\r\n"
+        },
+        {
+          "date": 1742951228323,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n   providers: [provideRouter(\r\n     appRoutes,\r\n-    withRouterConfig({\r\n+    withNavigationHandling({\r\n       anchorScrolling: 'enabled',\r\n       scrollPositionRestoration: 'enabled',\r\n     })\r\n   ),],\r\n"
+        },
+        {
+          "date": 1742951370593,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,9 @@\n import { ApplicationConfig } from '@angular/core';\r\n-import { provideRouter, withRouterConfig } from '@angular/router';\r\n+import { provideRouter, withInMemoryScrolling, withRouterConfig } from '@angular/router';\r\n import { appRoutes } from './app.routes';\r\n export const appConfig: ApplicationConfig = {\r\n   providers: [provideRouter(\r\n     appRoutes,\r\n-    withNavigationHandling({\r\n-      anchorScrolling: 'enabled',\r\n-      scrollPositionRestoration: 'enabled',\r\n-    })\r\n+      withInMemoryScrolling({ anchorScrolling: 'enabled' })\r\n   ),],\r\n };\r\n"
+        }
+      ],
+      "date": 1742950987458,
+      "name": "Commit-0",
+      "content": "import { ApplicationConfig } from '@angular/core';\r\nimport { provideRouter } from '@angular/router';\r\nimport { appRoutes } from './app.routes';\r\nexport const appConfig: ApplicationConfig = {\r\n  providers: [provideRouter(appRoutes,{anchorScrolling: true})],\r\n};\r\n"
+    }
+  ]
+}

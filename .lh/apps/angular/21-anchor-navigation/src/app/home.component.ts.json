@@ -1,0 +1,66 @@
+{
+  "sourceFile": "apps/angular/21-anchor-navigation/src/app/home.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 12,
+      "patches": [
+        {
+          "date": 1742950452310,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742950466799,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { Component } from '@angular/core';\r\n import { NavButtonComponent } from './nav-button.component';\r\n+import { RouterLink } from '@angular/router';\r\n \r\n @Component({\r\n-  imports: [NavButtonComponent],\r\n+  imports: [NavButtonComponent, RouterLink],\r\n   selector: 'app-home',\r\n   template: `\r\n     <nav-button [routerLink]=\"['foo']\"  class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n"
+        },
+        {
+          "date": 1742950512040,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n @Component({\r\n   imports: [NavButtonComponent, RouterLink],\r\n   selector: 'app-home',\r\n   template: `\r\n-    <nav-button [routerLink]=\"['foo']\"  class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n+    <nav-button [routerLink]=\"['/foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n       <nav-button href=\"#bottom\">Scroll Bottom</nav-button>\r\n     </div>\r\n"
+        },
+        {
+          "date": 1742950520813,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n @Component({\r\n   imports: [NavButtonComponent, RouterLink],\r\n   selector: 'app-home',\r\n   template: `\r\n-    <nav-button [routerLink]=\"['/foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n+    <nav-button [routerLink]=\"['foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n       <nav-button href=\"#bottom\">Scroll Bottom</nav-button>\r\n     </div>\r\n"
+        },
+        {
+          "date": 1742950551461,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   template: `\r\n     <nav-button [routerLink]=\"['foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n-      <nav-button href=\"#bottom\">Scroll Bottom</nav-button>\r\n+      <nav-button fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n     <div id=\"bottom\" class=\"h-screen bg-blue-300\">\r\n       I want to scroll each\r\n       <nav-button href=\"#top\">Scroll Top</nav-button>\r\n"
+        },
+        {
+          "date": 1742950696930,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       <nav-button fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n     <div id=\"bottom\" class=\"h-screen bg-blue-300\">\r\n       I want to scroll each\r\n-      <nav-button href=\"#top\">Scroll Top</nav-button>\r\n+      <nav-button fragment=\"top\" >Scroll Top</nav-button>\r\n     </div>\r\n   `,\r\n })\r\n export class HomeComponent {}\r\n"
+        },
+        {
+          "date": 1742950721862,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n @Component({\r\n   imports: [NavButtonComponent, RouterLink],\r\n   selector: 'app-home',\r\n   template: `\r\n-    <nav-button [routerLink]=\"['foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n+    <nav-button [routerLink]=\"['/foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n       <nav-button fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n"
+        },
+        {
+          "date": 1742950782411,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n @Component({\r\n   imports: [NavButtonComponent, RouterLink],\r\n   selector: 'app-home',\r\n   template: `\r\n-    <nav-button [routerLink]=\"['/foo']\" router class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n+    <nav-button [routerLink]=\"['/foo']\" class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n       <nav-button fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n"
+        },
+        {
+          "date": 1742951427030,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   template: `\r\n     <nav-button [routerLink]=\"['/foo']\" class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n-      <nav-button fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n+      <nav-button routerLink=\"\" fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n     <div id=\"bottom\" class=\"h-screen bg-blue-300\">\r\n       I want to scroll each\r\n       <nav-button fragment=\"top\" >Scroll Top</nav-button>\r\n"
+        },
+        {
+          "date": 1742951513865,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,13 @@\n   template: `\r\n     <nav-button [routerLink]=\"['/foo']\" class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n-      <nav-button routerLink=\"\" fragment=\"bottom\" >Scroll Bottom</nav-button>\r\n+      <nav-button anchor=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n     <div id=\"bottom\" class=\"h-screen bg-blue-300\">\r\n       I want to scroll each\r\n-      <nav-button fragment=\"top\" >Scroll Top</nav-button>\r\n+      <nav-button anchor=\"top\" >Scroll Top</nav-button>\r\n     </div>\r\n   `,\r\n })\r\n export class HomeComponent {}\r\n"
+        },
+        {
+          "date": 1742955544080,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n @Component({\r\n   imports: [NavButtonComponent, RouterLink],\r\n   selector: 'app-home',\r\n   template: `\r\n-    <nav-button [routerLink]=\"['/foo']\" class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n+    <nav-button [routerLink]=\"['/foo']\" class=\"fixed left-1/2 top-3 \">Foo Page</nav-button>\r\n     <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n       Empty\r\n       <nav-button anchor=\"bottom\" >Scroll Bottom</nav-button>\r\n     </div>\r\n@@ -15,6 +15,7 @@\n       I want to scroll each\r\n       <nav-button anchor=\"top\" >Scroll Top</nav-button>\r\n     </div>\r\n   `,\r\n+  host: 'scroll-smoth'\r\n })\r\n export class HomeComponent {}\r\n"
+        },
+        {
+          "date": 1742955639767,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,7 @@\n       I want to scroll each\r\n       <nav-button anchor=\"top\" >Scroll Top</nav-button>\r\n     </div>\r\n   `,\r\n-  host: 'scroll-smooth'\r\n+  host: 'scroll-smooth '\r\n })\r\n export class HomeComponent {}\r\n"
+        },
+        {
+          "date": 1742955705560,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,7 @@\n       I want to scroll each\r\n       <nav-button anchor=\"top\" >Scroll Top</nav-button>\r\n     </div>\r\n   `,\r\n-  host: 'scroll-smooth',\r\n+  host: { class:'scroll-smooth'},\r\n })\r\n export class HomeComponent {}\r\n"
+        }
+      ],
+      "date": 1742950452310,
+      "name": "Commit-0",
+      "content": "import { Component } from '@angular/core';\r\nimport { NavButtonComponent } from './nav-button.component';\r\n\r\n@Component({\r\n  imports: [NavButtonComponent],\r\n  selector: 'app-home',\r\n  template: `\r\n    <nav-button [routerLink]=\"['foo']\"  class=\"fixed left-1/2 top-3\">Foo Page</nav-button>\r\n    <div id=\"top\" class=\"h-screen bg-gray-500\">\r\n      Empty\r\n      <nav-button href=\"#bottom\">Scroll Bottom</nav-button>\r\n    </div>\r\n    <div id=\"bottom\" class=\"h-screen bg-blue-300\">\r\n      I want to scroll each\r\n      <nav-button href=\"#top\">Scroll Top</nav-button>\r\n    </div>\r\n  `,\r\n})\r\nexport class HomeComponent {}\r\n"
+    }
+  ]
+}
