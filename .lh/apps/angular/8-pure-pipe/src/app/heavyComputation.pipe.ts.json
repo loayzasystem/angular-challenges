@@ -1,0 +1,26 @@
+{
+  "sourceFile": "apps/angular/8-pure-pipe/src/app/heavyComputation.pipe.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 2,
+      "patches": [
+        {
+          "date": 1742949259307,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742949331313,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n import { Pipe, type PipeTransform } from '@angular/core';\n \n @Pipe({\n   name: 'appHeavyComputation',\n+  pure: true\n })\n export class HeavyComputationPipe implements PipeTransform {\n \n   transform(value: unknown, ...args: unknown[]): unknown {\n     return `${name} - ${index}`;\n-    return value;\n+\n   }\n \n }\n"
+        },
+        {
+          "date": 1742949387103,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n   pure: true\n })\n export class HeavyComputationPipe implements PipeTransform {\n \n-  transform(value: unknown, ...args: unknown[]): unknown {\n-    return `${name} - ${index}`;\n+  transform(value: string, index: number ): unknown {\n+    return `${value} - ${index}`;\n \n   }\n \n }\n"
+        }
+      ],
+      "date": 1742949259307,
+      "name": "Commit-0",
+      "content": "import { Pipe, type PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'appHeavyComputation',\n})\nexport class HeavyComputationPipe implements PipeTransform {\n\n  transform(value: unknown, ...args: unknown[]): unknown {\n    return `${name} - ${index}`;\n    return value;\n  }\n\n}\n"
+    }
+  ]
+}

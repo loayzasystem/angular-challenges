@@ -1,0 +1,22 @@
+{
+  "sourceFile": "apps/angular/8-pure-pipe/src/app/app.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 1,
+      "patches": [
+        {
+          "date": 1742949431894,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742949499813,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   imports: [NgFor, HeavyComputationPipe],\r\n   selector: 'app-root',\r\n   template: `\r\n     <div *ngFor=\"let person of persons; let index = index\">\r\n-      {{ heavyComputation(person, index) }}\r\n+      {{ person | appHeavyComputation: index }}\r\n     </div>\r\n   `,\r\n })\r\n export class AppComponent {\r\n"
+        }
+      ],
+      "date": 1742949431894,
+      "name": "Commit-0",
+      "content": "import { NgFor } from '@angular/common';\r\nimport { Component } from '@angular/core';\r\nimport { HeavyComputationPipe } from './heavyComputation.pipe';\r\n\r\n@Component({\r\n  imports: [NgFor, HeavyComputationPipe],\r\n  selector: 'app-root',\r\n  template: `\r\n    <div *ngFor=\"let person of persons; let index = index\">\r\n      {{ heavyComputation(person, index) }}\r\n    </div>\r\n  `,\r\n})\r\nexport class AppComponent {\r\n  persons = ['toto', 'jack'];\r\n\r\n  heavyComputation(name: string, index: number) {\r\n    // very heavy computation\r\n    return `${name} - ${index}`;\r\n  }\r\n}\r\n"
+    }
+  ]
+}
