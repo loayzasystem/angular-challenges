@@ -19,7 +19,7 @@ export class TypitodoStore {
   }
 
   update(todo: Typicode): void {
-    this.todoService.updateTypicode(todo).subscribe((result: Typicode) => {
+    this.todoService.updateTypicode(todo).subscribe(() => {
       this.todos.update((currentTodos) =>
         currentTodos.map((t) => (t.id === todo.id ? todo : t)),
       );
@@ -27,7 +27,7 @@ export class TypitodoStore {
   }
 
   delete(id: Typicode['id']): void {
-    this.todoService.borrarTypicode(id).subscribe((result: Typicode) => {
+    this.todoService.borrarTypicode(id).subscribe(() => {
       this.todos.update((currentTodos) =>
         currentTodos.filter((t) => t.id !== id),
       );

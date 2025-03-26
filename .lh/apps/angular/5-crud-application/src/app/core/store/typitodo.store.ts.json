@@ -3,7 +3,7 @@
   "activeCommit": 0,
   "commits": [
     {
-      "activePatchIndex": 10,
+      "activePatchIndex": 11,
       "patches": [
         {
           "date": 1742941767019,
@@ -48,6 +48,10 @@
         {
           "date": 1742948180985,
           "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     });\n   }\n \n   delete(id: Typicode['id']) : void{\n+    \n     this.todoService.borrarTypicode(id).subscribe((result: Typicode) => {\n         this.todos.update(currentTodos => currentTodos.filter(t=> t.id !== id ));\n     });\n   }\n"
+        },
+        {
+          "date": 1742948783436,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,17 +18,17 @@\n     });\n   }\n \n   update(todo: Typicode): void {\n-    this.todoService.updateTypicode(todo).subscribe((result: Typicode) => {\n+    this.todoService.updateTypicode(todo).subscribe(() => {\n       this.todos.update((currentTodos) =>\n         currentTodos.map((t) => (t.id === todo.id ? todo : t)),\n       );\n     });\n   }\n \n   delete(id: Typicode['id']): void {\n-    this.todoService.borrarTypicode(id).subscribe((result: Typicode) => {\n+    this.todoService.borrarTypicode(id).subscribe(() => {\n       this.todos.update((currentTodos) =>\n         currentTodos.filter((t) => t.id !== id),\n       );\n     });\n"
         }
       ],
       "date": 1742941767019,
