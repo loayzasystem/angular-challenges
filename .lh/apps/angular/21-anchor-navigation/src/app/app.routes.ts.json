@@ -3,11 +3,19 @@
   "activeCommit": 0,
   "commits": [
     {
-      "activePatchIndex": 0,
+      "activePatchIndex": 2,
       "patches": [
         {
           "date": 1742950635485,
           "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742956910759,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,7 +3,10 @@\n import { HomeComponent } from './home.component';\r\n \r\n export const appRoutes: Route[] = [\r\n   { path: 'home', component: HomeComponent },\r\n-  { path: 'foo', component: FooComponent },\r\n+  {\r\n+    path: 'foo',\r\n+    loadComponent: () => import('').then(m => m.FooComponent)\r\n+  },\r\n   { path: '**', redirectTo: 'home' },\r\n ];\r\n"
+        },
+        {
+          "date": 1742956972150,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n export const appRoutes: Route[] = [\r\n   { path: 'home', component: HomeComponent },\r\n   {\r\n     path: 'foo',\r\n-    loadComponent: () => import('').then(m => m.FooComponent)\r\n+    loadComponent: () => import('./foo.component').then(m => m.FooComponent)\r\n   },\r\n   { path: '**', redirectTo: 'home' },\r\n ];\r\n"
         }
       ],
       "date": 1742950635485,
