@@ -1,0 +1,26 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/core/models/Typicode.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 2,
+      "patches": [
+        {
+          "date": 1742865127022,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742866619864,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n export interface Typicode {\n   userId: number;\n   id: number;\n   title: string;\n+  body: string;\n   completed: boolean;\n }\n"
+        },
+        {
+          "date": 1742866656450,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n   userId: number;\n   id: number;\n   title: string;\n   body: string;\n-  completed: boolean;\n+  completed?: boolean;\n }\n"
+        }
+      ],
+      "date": 1742865127022,
+      "name": "Commit-0",
+      "content": "export interface Typicode {\n  userId: number;\n  id: number;\n  title: string;\n  completed: boolean;\n}\n"
+    }
+  ]
+}

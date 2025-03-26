@@ -1,0 +1,22 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/shared/component/Loading/Loading.component.spec.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 1,
+      "patches": [
+        {
+          "date": 1742924553900,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742932928024,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { DebugElement } from '@angular/core';\n \n import { LoadingComponent } from './loading.component';\n \n-describe('LoadingComponent', () => {\n+describe('loadingComponent', () => {\n   let component: LoadingComponent;\n   let fixture: ComponentFixture<LoadingComponent>;\n \n   beforeEach(async(() => {\n"
+        }
+      ],
+      "date": 1742924553900,
+      "name": "Commit-0",
+      "content": "/* tslint:disable:no-unused-variable */\nimport { async, ComponentFixture, TestBed } from '@angular/core/testing';\nimport { By } from '@angular/platform-browser';\nimport { DebugElement } from '@angular/core';\n\nimport { LoadingComponent } from './loading.component';\n\ndescribe('LoadingComponent', () => {\n  let component: LoadingComponent;\n  let fixture: ComponentFixture<LoadingComponent>;\n\n  beforeEach(async(() => {\n    TestBed.configureTestingModule({\n      declarations: [ LoadingComponent ]\n    })\n    .compileComponents();\n  }));\n\n  beforeEach(() => {\n    fixture = TestBed.createComponent(LoadingComponent);\n    component = fixture.componentInstance;\n    fixture.detectChanges();\n  });\n\n  it('should create', () => {\n    expect(component).toBeTruthy();\n  });\n});\n"
+    }
+  ]
+}

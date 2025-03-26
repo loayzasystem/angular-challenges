@@ -1,0 +1,26 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/core/interceptors/loading.interceptor.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 2,
+      "patches": [
+        {
+          "date": 1742933346593,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742933356923,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n import { inject } from '@angular/core';\n import { LoadingService } from '../../shared/services/Loading.service';\n \n export const loadingInterceptor: HttpInterceptorFn = (req, next) => {\n-  private loadingService = inject(LoadingService);\n-  \n+  loadingService = inject(LoadingService);\n+\n   return next(req).pipe(\n-    \n+\n   );\n };\n"
+        },
+        {
+          "date": 1742933449293,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import type { HttpInterceptorFn } from '@angular/common/http';\n import { inject } from '@angular/core';\n import { LoadingService } from '../../shared/services/Loading.service';\n+import { finalize } from 'rxjs';\n \n export const loadingInterceptor: HttpInterceptorFn = (req, next) => {\n-  loadingService = inject(LoadingService);\n-\n+  const loadingService = inject(LoadingService);\n+  loadingService.showLoading();\n   return next(req).pipe(\n-\n+    finalize(()=> loadingService.hideLoading())\n   );\n };\n"
+        }
+      ],
+      "date": 1742933346593,
+      "name": "Commit-0",
+      "content": "import type { HttpInterceptorFn } from '@angular/common/http';\nimport { inject } from '@angular/core';\nimport { LoadingService } from '../../shared/services/Loading.service';\n\nexport const loadingInterceptor: HttpInterceptorFn = (req, next) => {\n  private loadingService = inject(LoadingService);\n  \n  return next(req).pipe(\n    \n  );\n};\n"
+    }
+  ]
+}

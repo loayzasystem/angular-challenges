@@ -1,0 +1,11 @@
+.overlay-loading {
+  z-index: 99999;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  top: 0;
+  display: flex;
+  place-items: center;
+  place-content: center;
+}

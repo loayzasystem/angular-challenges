@@ -1,0 +1,26 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/app.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 2,
+      "patches": [
+        {
+          "date": 1742864039229,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742865481270,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,8 @@\n           },\r\n         },\r\n       )\r\n       .subscribe((todoUpdated: any) => {\r\n-        this.todos[todoUpdated.id - 1] = t\n\\ No newline at end of file\n+        this.todos[todoUpdated.id - 1] = todoUpdated;\r\n+      });\r\n+  }\r\n+}\r\n"
+        },
+        {
+          "date": 1742865531633,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,18 +15,12 @@\n   `,\r\n   styles: [],\r\n })\r\n export class AppComponent implements OnInit {\r\n+  private typecodeService = new TypicodeService();\r\n+\r\n   todos = signal<Typicode[]>([]);\r\n \r\n-  ngOnInit(): void {\r\n-    this.http\r\n-      .get<any[]>('https://jsonplaceholder.typicode.com/todos')\r\n-      .subscribe((todos) => {\r\n-        this.todos = todos;\r\n-      });\r\n-  }\r\n-\r\n   update(todo: any) {\r\n     this.http\r\n       .put<any>(\r\n         `https://jsonplaceholder.typicode.com/todos/${todo.id}`,\r\n"
+        }
+      ],
+      "date": 1742864039229,
+      "name": "Commit-0",
+      "content": "import { CommonModule } from '@angular/common';\r\nimport { HttpClient } from '@angular/common/http';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { randText } from '@ngneat/falso';\r\n\r\n@Component({\r\n  imports: [CommonModule],\r\n  selector: 'app-root',\r\n  template: `\r\n    <div *ngFor=\"let todo of todos\">\r\n      {{ todo.title }}\r\n      <button (click)=\"update(todo)\">Update</button>\r\n    </div>\r\n  `,\r\n  styles: [],\r\n})\r\nexport class AppComponent implements OnInit {\r\n  todos!: any[];\r\n\r\n  constructor(private http: HttpClient) {}\r\n\r\n  ngOnInit(): void {\r\n    this.http\r\n      .get<any[]>('https://jsonplaceholder.typicode.com/todos')\r\n      .subscribe((todos) => {\r\n        this.todos = todos;\r\n      });\r\n  }\r\n\r\n  update(todo: any) {\r\n    this.http\r\n      .put<any>(\r\n        `https://jsonplaceholder.typicode.com/todos/${todo.id}`,\r\n        JSON.stringify({\r\n          todo: todo.id,\r\n          title: randText(),\r\n          body: todo.body,\r\n          userId: todo.userId,\r\n        }),\r\n        {\r\n          headers: {\r\n            'Content-type': 'application/json; charset=UTF-8',\r\n          },\r\n        },\r\n      )\r\n      .subscribe((todoUpdated: any) => {\r\n        this.todos[todoUpdated.id - 1] = todoUpdated;\r\n      });\r\n  }\r\n}\r\n"
+    }
+  ]
+}

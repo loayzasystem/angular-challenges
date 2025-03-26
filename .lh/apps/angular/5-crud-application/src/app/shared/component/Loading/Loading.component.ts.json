@@ -1,0 +1,58 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/shared/component/Loading/Loading.component.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 10,
+      "patches": [
+        {
+          "date": 1742924522587,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742924553916,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { LoadingService } from './../../services/Loading.service';\n+import { LoadingService } from '../../services/Loading.service';\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n   selector: 'app-loading',\n"
+        },
+        {
+          "date": 1742924697586,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,6 @@\n export class LoadingComponent implements OnInit {\n \n   LoadingService = inject(LoadingService);\n \n-  ngOnInit() {\n-  }\n \n }\n"
+        },
+        {
+          "date": 1742924731150,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,8 @@\n   styleUrls: ['./Loading.component.css']\n })\n export class LoadingComponent implements OnInit {\n \n-  LoadingService = inject(LoadingService);\n+  loadingService = inject(LoadingService);\n \n \n }\n"
+        },
+        {
+          "date": 1742925579038,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n   selector: 'app-loading',\n+  styleUrls: ['./Loading.component.css'],\n   templateUrl: './Loading.component.html',\n-  styleUrls: ['./Loading.component.css']\n+  imports: [MatProgressSpinnerModule]\n })\n export class LoadingComponent implements OnInit {\n \n   loadingService = inject(LoadingService);\n"
+        },
+        {
+          "date": 1742928986054,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { MatButtonModule } from '@angular/material/button';\n import { LoadingService } from '../../services/Loading.service';\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n"
+        },
+        {
+          "date": 1742929478796,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { MatButtonModule } from '@angular/material/button';\n+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';\n import { LoadingService } from '../../services/Loading.service';\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n@@ -11,6 +11,5 @@\n export class LoadingComponent implements OnInit {\n \n   loadingService = inject(LoadingService);\n \n-\n }\n"
+        },
+        {
+          "date": 1742929534675,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';\n+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';\n import { LoadingService } from '../../services/Loading.service';\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n@@ -7,9 +7,7 @@\n   styleUrls: ['./Loading.component.css'],\n   templateUrl: './Loading.component.html',\n   imports: [MatProgressSpinnerModule]\n })\n-export class LoadingComponent implements OnInit {\n-\n+export class LoadingComponent {\n   loadingService = inject(LoadingService);\n-\n }\n"
+        },
+        {
+          "date": 1742932613953,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n   selector: 'app-loading',\n-  styleUrls: ['./Loading.component.css'],\n-  templateUrl: './Loading.component.html',\n+  styleUrls: ['./loading.component.css'],\n+  templateUrl: './loading.component.html',\n   imports: [MatProgressSpinnerModule]\n })\n export class LoadingComponent {\n   loadingService = inject(LoadingService);\n"
+        },
+        {
+          "date": 1742932655173,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n   selector: 'app-loading',\n-  styleUrls: ['./loading.component.css'],\n+  styleUrls: ['./Loading.component.css'],\n   templateUrl: './loading.component.html',\n   imports: [MatProgressSpinnerModule]\n })\n export class LoadingComponent {\n"
+        },
+        {
+          "date": 1742932765855,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { Component, inject, OnInit } from '@angular/core';\n \n @Component({\n   selector: 'app-loading',\n-  styleUrls: ['./Loading.component.css'],\n+  styleUrls: ['./loading.component.css'],\n   templateUrl: './loading.component.html',\n   imports: [MatProgressSpinnerModule]\n })\n export class LoadingComponent {\n"
+        }
+      ],
+      "date": 1742924522587,
+      "name": "Commit-0",
+      "content": "import { LoadingService } from './../../services/Loading.service';\nimport { Component, inject, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-loading',\n  templateUrl: './Loading.component.html',\n  styleUrls: ['./Loading.component.css']\n})\nexport class LoadingComponent implements OnInit {\n\n  LoadingService = inject(LoadingService);\n\n  ngOnInit() {\n  }\n\n}\n"
+    }
+  ]
+}

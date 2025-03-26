@@ -1,0 +1,38 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/shared/services/Loading.service.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 5,
+      "patches": [
+        {
+          "date": 1742924208865,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742924341330,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,16 @@\n-import { Injectable } from '@angular/core';\n+import { Injectable, signal } from '@angular/core';\n \n @Injectable({\n   providedIn: 'root'\n })\n export class LoadingService {\n \n-constructor() { }\n+  private isLoading = signal<boolean>(false);\n \n-}\n+  showLoading() {\n+    this.isLoading.set(true)\n+  }\n+\n+  hideLoading(){\n+    this.isLoading.set(false);\n+  }\n"
+        },
+        {
+          "date": 1742924354303,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,17 @@\n+import { Injectable, signal } from '@angular/core';\n+\n+@Injectable({\n+  providedIn: 'root'\n+})\n+export class LoadingService {\n+\n+  private isLoading = signal<boolean>(false);\n+\n+  showLoading() {\n+    this.isLoading.set(true);\n+  }\n+\n+  hideLoading(){\n+    this.isLoading.set(false);\n+  }\n+}\n"
+        },
+        {
+          "date": 1742924676537,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   providedIn: 'root'\n })\n export class LoadingService {\n \n-  private isLoading = signal<boolean>(false);\n+  isLoading = signal<boolean>(false);\n \n   showLoading() {\n     this.isLoading.set(true);\n   }\n"
+        },
+        {
+          "date": 1742933622223,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n \n   isLoading = signal<boolean>(false);\n \n   showLoading() {\n+    alert(\"Show!!\")\n     this.isLoading.set(true);\n   }\n \n   hideLoading(){\n"
+        },
+        {
+          "date": 1742933714350,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n \n   isLoading = signal<boolean>(false);\n \n   showLoading() {\n-    alert(\"Show!!\")\n     this.isLoading.set(true);\n   }\n \n   hideLoading(){\n"
+        }
+      ],
+      "date": 1742924208865,
+      "name": "Commit-0",
+      "content": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class LoadingService {\n\nconstructor() { }\n\n}\n"
+    }
+  ]
+}

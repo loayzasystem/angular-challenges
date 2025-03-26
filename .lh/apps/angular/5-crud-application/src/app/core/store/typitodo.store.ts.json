@@ -1,0 +1,58 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/core/store/typitodo.store.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 10,
+      "patches": [
+        {
+          "date": 1742941767019,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742942513126,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,14 +13,22 @@\n \n   private todos = signal<Typicode[]>([])\n \n   getAll() :void {\n-     this.todos.set toSignal(this.todoService.getTypicodes())\n+    this.todoService.getTypicodes().subscribe((todos: Typicode[]) => {\n+      this.todos.set(todos)\n+    })\n   }\n \n   update(todo: Typicode) : void{\n-    this.todoService.updateTypicode(todo).subscribe(() => {\n+    this.todoService.updateTypicode(todo).subscribe((result: Typicode) => {\n         this.todos.update(currentTodos => currentTodos.map(t=> t.id === todo.id ? todo : t));\n     });\n   }\n \n+  delete(id: Typicode['id']) : void{\n+    this.todoService.borrarTypicode(id).subscribe((result: Typicode) => {\n+        this.todos.update(currentTodos => currentTodos.map(t=> t.id === todo.id ? todo : t));\n+    });\n+  }\n+\n }\n"
+        },
+        {
+          "date": 1742942681148,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   }\n \n   delete(id: Typicode['id']) : void{\n     this.todoService.borrarTypicode(id).subscribe((result: Typicode) => {\n-        this.todos.update(currentTodos => currentTodos.map(t=> t.id === todo.id ? todo : t));\n+        this.todos.update(currentTodos => currentTodos.filter(t=> t.id !== id ));\n     });\n   }\n \n }\n"
+        },
+        {
+          "date": 1742942712738,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { toSignal } from '@angular/core/rxjs-interop';\n import { Typicode } from './../models/Typicode';\n import { TypicodeService } from './../services/Typicode.service';\n import { Injectable, signal } from '@angular/core';\n-import { Typicode } from '../models/Typicode';\n \n @Injectable({\n   providedIn: 'root'\n })\n"
+        },
+        {
+          "date": 1742942736033,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-import { toSignal } from '@angular/core/rxjs-interop';\n import { Typicode } from './../models/Typicode';\n import { TypicodeService } from './../services/Typicode.service';\n import { Injectable, signal } from '@angular/core';\n \n"
+        },
+        {
+          "date": 1742942798444,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n export class TypitodoStore {\n \n   constructor(private todoService: TypicodeService){}\n \n-  private todos = signal<Typicode[]>([])\n+  public todos = signal<Typicode[]>([])\n \n   getAll() :void {\n     this.todoService.getTypicodes().subscribe((todos: Typicode[]) => {\n       this.todos.set(todos)\n"
+        },
+        {
+          "date": 1742942928367,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,12 @@\n   constructor(private todoService: TypicodeService){}\n \n   public todos = signal<Typicode[]>([])\n \n+  constructor(){\n+    this.todos.getAll();\n+  }\n+\n   getAll() :void {\n     this.todoService.getTypicodes().subscribe((todos: Typicode[]) => {\n       this.todos.set(todos)\n     })\n"
+        },
+        {
+          "date": 1742942954526,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,14 @@\n   providedIn: 'root'\n })\n export class TypitodoStore {\n \n-  constructor(private todoService: TypicodeService){}\n+  constructor(private todoService: TypicodeService){\n+    this.todos.getAll();\n+  }\n \n   public todos = signal<Typicode[]>([])\n \n-  constructor(){\n-    this.todos.getAll();\n-  }\n \n   getAll() :void {\n     this.todoService.getTypicodes().subscribe((todos: Typicode[]) => {\n       this.todos.set(todos)\n"
+        },
+        {
+          "date": 1742942965128,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,14 @@\n   providedIn: 'root'\n })\n export class TypitodoStore {\n \n+  public todos = signal<Typicode[]>([])\n+\n   constructor(private todoService: TypicodeService){\n     this.todos.getAll();\n   }\n \n-  public todos = signal<Typicode[]>([])\n-\n-\n   getAll() :void {\n     this.todoService.getTypicodes().subscribe((todos: Typicode[]) => {\n       this.todos.set(todos)\n     })\n"
+        },
+        {
+          "date": 1742942979374,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n   public todos = signal<Typicode[]>([])\n \n   constructor(private todoService: TypicodeService){\n-    this.todos.getAll();\n+    this.getAll();\n   }\n \n   getAll() :void {\n     this.todoService.getTypicodes().subscribe((todos: Typicode[]) => {\n"
+        },
+        {
+          "date": 1742948180985,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     });\n   }\n \n   delete(id: Typicode['id']) : void{\n+    \n     this.todoService.borrarTypicode(id).subscribe((result: Typicode) => {\n         this.todos.update(currentTodos => currentTodos.filter(t=> t.id !== id ));\n     });\n   }\n"
+        }
+      ],
+      "date": 1742941767019,
+      "name": "Commit-0",
+      "content": "import { toSignal } from '@angular/core/rxjs-interop';\nimport { Typicode } from './../models/Typicode';\nimport { TypicodeService } from './../services/Typicode.service';\nimport { Injectable, signal } from '@angular/core';\nimport { Typicode } from '../models/Typicode';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class TypitodoStore {\n\n  constructor(private todoService: TypicodeService){}\n\n  private todos = signal<Typicode[]>([])\n\n  getAll() :void {\n     this.todos.set toSignal(this.todoService.getTypicodes())\n  }\n\n  update(todo: Typicode) : void{\n    this.todoService.updateTypicode(todo).subscribe(() => {\n        this.todos.update(currentTodos => currentTodos.map(t=> t.id === todo.id ? todo : t));\n    });\n  }\n\n}\n"
+    }
+  ]
+}

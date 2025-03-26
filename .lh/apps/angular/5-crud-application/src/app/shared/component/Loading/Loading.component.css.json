@@ -1,0 +1,82 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/shared/component/Loading/Loading.component.css",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 16,
+      "patches": [
+        {
+          "date": 1742930213830,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742930247732,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-.overlay-loading {\r\n+:host .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n   background: #737373a6;\r\n"
+        },
+        {
+          "date": 1742930471630,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-:host .overlay-loading {\r\n+.overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n   background: #737373a6;\r\n"
+        },
+        {
+          "date": 1742930835093,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,8 @@\n   position: fixed;\r\n   background: #737373a6;\r\n   width: 100vw;\r\n   top: 0;\r\n+  display: flex;\r\n   place-items: center;\r\n   place-content: center;\r\n }\r\n"
+        },
+        {
+          "date": 1742930959852,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: #737373a6;\r\n+  background: var(--primary);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742931150227,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: var(--primary);\r\n+  background: black;\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742931178376,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: black;\r\n+  background: rgba(0, 0, 0, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742931211925,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-.overlay-loading {\r\n+:host .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n   background: rgba(0, 0, 0, 0.5);\r\n"
+        },
+        {
+          "date": 1742932457251,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n :host .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(0, 0, 0, 0.5);\r\n+  background: rgba(190, 38, 38, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742932481975,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n-:host .overlay-loading {\r\n+.overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(190, 38, 38, 0.5);\r\n+  background: rgba(152, 206, 53, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742932495625,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-.overlay-loading {\r\n+:host .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n   background: rgba(152, 206, 53, 0.5);\r\n"
+        },
+        {
+          "date": 1742932501130,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-:host .overlay-loading {\r\n+.overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n   background: rgba(152, 206, 53, 0.5);\r\n"
+        },
+        {
+          "date": 1742932676087,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(152, 206, 53, 0.5);\r\n+  background: rgba(40, 118, 182, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742932685158,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(40, 118, 182, 0.5);\r\n+  background: rgba(0, 0, 0, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742932704370,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(0, 0, 0, 0.5);\r\n+  background: rgba(6, 37, 63, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742932797462,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(6, 37, 63, 0.5);\r\n+  background: rgba(191, 231, 11, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        },
+        {
+          "date": 1742933750722,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .overlay-loading {\r\n   z-index: 99999;\r\n   height: 100vh;\r\n   position: fixed;\r\n-  background: rgba(191, 231, 11, 0.5);\r\n+  background: rgba(0, 0, 0, 0.5);\r\n   width: 100vw;\r\n   top: 0;\r\n   display: flex;\r\n   place-items: center;\r\n"
+        }
+      ],
+      "date": 1742930213830,
+      "name": "Commit-0",
+      "content": ".overlay-loading {\r\n  z-index: 99999;\r\n  height: 100vh;\r\n  position: fixed;\r\n  background: #737373a6;\r\n  width: 100vw;\r\n  top: 0;\r\n  place-items: center;\r\n  place-content: center;\r\n}\r\n"
+    }
+  ]
+}

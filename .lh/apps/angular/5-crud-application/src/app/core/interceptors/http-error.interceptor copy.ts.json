@@ -1,0 +1,18 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/core/interceptors/http-error.interceptor copy.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 0,
+      "patches": [
+        {
+          "date": 1742924695371,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        }
+      ],
+      "date": 1742924695371,
+      "name": "Commit-0",
+      "content": "import { HttpErrorResponse, HttpEvent, HttpHandlerFn,  HttpInterceptorFn, HttpRequest } from '@angular/common/http';\nimport { catchError, Observable, throwError } from 'rxjs';\n\nexport const LoadingInterceptor: HttpInterceptorFn  =  (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {\n    return next(req).pipe(\n      catchError((error: HttpErrorResponse) => {\n        console.error(`Error HTTP ${error.status}: ${error.message}`);\n        return throwError(() => new Error(error.message));\n      })\n    );\n}\n"
+    }
+  ]
+}

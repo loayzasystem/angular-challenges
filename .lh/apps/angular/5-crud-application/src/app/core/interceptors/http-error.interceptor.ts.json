@@ -1,0 +1,38 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/core/interceptors/http-error.interceptor.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 5,
+      "patches": [
+        {
+          "date": 1742868464316,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742868481715,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { Injectable } from '@angular/core';\n \n @Injectable()\n-export class HttpErrorInterceptor {\n+export class HttpErrorInterceptor implements HttpErrorInterceptor {\n \n constructor() { }\n \n }\n"
+        },
+        {
+          "date": 1742868557312,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n+import { HttpInterceptor } from '@angular/common/http';\n import { Injectable } from '@angular/core';\n \n @Injectable()\n-export class HttpErrorInterceptor implements HttpErrorInterceptor {\n+export class HttpErrorInterceptor implements HttpInterceptor {\n \n-constructor() { }\n+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n \n+  }\n+\n }\n"
+        },
+        {
+          "date": 1742868959630,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,5 @@\n \n   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n \n   }\n-\n }\n"
+        },
+        {
+          "date": 1742870247021,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,29 @@\n \n @Injectable()\n export class HttpErrorInterceptor implements HttpInterceptor {\n \n-  intercept(req: Ht\n\\ No newline at end of file\n+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n+    return next.handle(req).pipe(\n+      catchError((error: HttpErrorResponse) => {\n+        let errorMessage = 'Ocurrió un error desconocido';\n+\n+        if (error.status === 401) {\n+          // Error de autenticación, redirigir al login\n+          errorMessage = 'Sesión expirada. Redirigiendo al login...';\n+          this.router.navigate(['/login']);\n+        } else if (error.status === 403) {\n+          errorMessage = 'No tienes permiso para acceder a este recurso.';\n+        } else if (error.status === 404) {\n+          errorMessage = 'El recurso solicitado no fue encontrado.';\n+        } else if (error.status === 500) {\n+          errorMessage = 'Error interno del servidor. Inténtalo más tarde.';\n+        }\n+\n+        console.error(`Error HTTP ${error.status}: ${errorMessage}`);\n+\n+        return throwError(() => new Error(errorMessage));\n+      })\n+    );\n+\n+  }\n+}\n"
+        },
+        {
+          "date": 1742870340413,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,30 +1,15 @@\n-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';\n+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';\n import { Injectable } from '@angular/core';\n-import { Observable } from 'rxjs';\n+import { catchError, Observable, throwError } from 'rxjs';\n \n @Injectable()\n export class HttpErrorInterceptor implements HttpInterceptor {\n \n   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {\n     return next.handle(req).pipe(\n       catchError((error: HttpErrorResponse) => {\n-        let errorMessage = 'Ocurrió un error desconocido';\n-\n-        if (error.status === 401) {\n-          // Error de autenticación, redirigir al login\n-          errorMessage = 'Sesión expirada. Redirigiendo al login...';\n-          this.router.navigate(['/login']);\n-        } else if (error.status === 403) {\n-          errorMessage = 'No tienes permiso para acceder a este recurso.';\n-        } else if (error.status === 404) {\n-          errorMessage = 'El recurso solicitado no fue encontrado.';\n-        } else if (error.status === 500) {\n-          errorMessage = 'Error interno del servidor. Inténtalo más tarde.';\n-        }\n-\n-        console.error(`Error HTTP ${error.status}: ${errorMessage}`);\n-\n+        console.error(`Error HTTP ${error.status}: ${error.message}`);\n         return throwError(() => new Error(errorMessage));\n       })\n     );\n \n"
+        }
+      ],
+      "date": 1742868464316,
+      "name": "Commit-0",
+      "content": "import { Injectable } from '@angular/core';\n\n@Injectable()\nexport class HttpErrorInterceptor {\n\nconstructor() { }\n\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "sourceFile": "apps/angular/5-crud-application/src/app/core/services/Typicode.service.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 6,
+      "patches": [
+        {
+          "date": 1742865144516,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1742865231394,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,17 @@\n-import { Injectable, signal } from '@angular/core';\n+import { HttpClient } from '@angular/common/http';\n+import { inject, Injectable, signal } from '@angular/core';\n import { Typicode } from '../models/Typicode';\n \n @Injectable(\n   {\n     providedIn: 'root'\n   }\n )\n export class TypicodeService {\n+  private http = inject(HttpClient);\n   readonly tycodes = signal<Typicode[]>([]);\n+\n+  public getTypicodes(): Typicode[] {\n+    this.HttpClient\n+  }\n }\n"
+        },
+        {
+          "date": 1742865422667,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,23 @@\n import { HttpClient } from '@angular/common/http';\n import { inject, Injectable, signal } from '@angular/core';\n import { Typicode } from '../models/Typicode';\n+import { Observable } from 'rxjs';\n+import { environment } from '../../environment/environment';\n \n @Injectable(\n   {\n     providedIn: 'root'\n   }\n )\n export class TypicodeService {\n   private http = inject(HttpClient);\n-  readonly tycodes = signal<Typicode[]>([]);\n+  //readonly tycodes = signal<Typicode[]>([]);\n \n-  public getTypicodes(): Typicode[] {\n-    this.HttpClient\n+  public getTypicodes(): Observable<Typicode[]> {\n+    return this.http.get<Typicode[]>(environment.api_url)\n   }\n+\n+  public updateTypicode(typicode: Typicode): Observable<Typicode> {\n+    return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n+  }\n }\n"
+        },
+        {
+          "date": 1742877555215,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,9 @@\n \n   public updateTypicode(typicode: Typicode): Observable<Typicode> {\n     return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n   }\n+\n+  public borrarTypicode(id: Pick<Typicode, 'id'>): Observable<Typicode> {\n+    return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n+  }\n }\n"
+        },
+        {
+          "date": 1742877672452,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,7 +21,7 @@\n     return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n   }\n \n   public borrarTypicode(id: Pick<Typicode, 'id'>): Observable<Typicode> {\n-    return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n+    return this.http.delete<Typicode>(`${environment.api_url}/${id}`)\n   }\n }\n"
+        },
+        {
+          "date": 1742877842422,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,8 @@\n   public updateTypicode(typicode: Typicode): Observable<Typicode> {\n     return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n   }\n \n-  public borrarTypicode(id: Pick<Typicode, 'id'>): Observable<Typicode> {\n+  public borrarTypicode(id: number): Observable<Typicode> {\n     return this.http.delete<Typicode>(`${environment.api_url}/${id}`)\n   }\n }\n"
+        },
+        {
+          "date": 1742947720204,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   private http = inject(HttpClient);\n   //readonly tycodes = signal<Typicode[]>([]);\n \n   public getTypicodes(): Observable<Typicode[]> {\n-    return this.http.get<Typicode[]>(environment.api_url)\n+    return this.http.get<Typicode[]>(environment.api_url,)\n   }\n \n   public updateTypicode(typicode: Typicode): Observable<Typicode> {\n     return this.http.put<Typicode>(`${environment.api_url}/${typicode.id}`, typicode)\n"
+        }
+      ],
+      "date": 1742865144516,
+      "name": "Commit-0",
+      "content": "import { Injectable, signal } from '@angular/core';\nimport { Typicode } from '../models/Typicode';\n\n@Injectable(\n  {\n    providedIn: 'root'\n  }\n)\nexport class TypicodeService {\n  readonly tycodes = signal<Typicode[]>([]);\n}\n"
+    }
+  ]
+}
